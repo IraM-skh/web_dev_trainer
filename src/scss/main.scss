@@ -1,0 +1,17 @@
+@import url(./modules/reset.scss);
+@import url(./modules/header.scss);
+@import url(./modules/trainerSection.scss);
+body {
+  font-size: 20px;
+}
+.selected_section_btn {
+  color: red;
+}
+.main_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}

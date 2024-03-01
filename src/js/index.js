@@ -1,0 +1,10 @@
+import { setCategory } from "./modules/htmlElements/category.js";
+import { setAllSubject } from "./modules/htmlElements/subject.js";
+import { addEventListenerOnTrainerList } from "./modules/subjectsList/toggleChosenVariantStyle.js";
+import "../scss/main.scss";
+import changeNavBtnStyle from "./modules/nav/changeNavBtnStyle";
+import "../js/modules/filter/toggleFilter.js";
+setCategory();
+setAllSubject();
+changeNavBtnStyle();
+addEventListenerOnTrainerList();

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер</title>
+    <script defer="" src="/js.00a46daa.js"></script>
+  <link rel="stylesheet" href="/js.00a46daa.css"></head>
+  <body>
+    <header class="main_container">
+      <h1>Тренажер по веб-разработке</h1>
+      <nav>
+        <button class="nav_btn selected_section_btn">JavaScript</button>
+        <button class="nav_btn">HTML</button>
+        <button class="nav_btn">CSS</button>
+        <button class="nav_btn">React</button>
+        <button class="nav_btn">Git</button>
+      </nav>
+    </header>
+    <main class="main_container">
+      <div>
+        <button class="filter_btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <path fill="none" stroke-linecap="round" stroke-width="2" d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4"></path>
+          </svg>
+        </button>
+      </div>
+      <form class="filter_container hidden">
+        <p>Отображать:</p>
+        <label><input type="checkbox">Пройденые</label>
+        <label><input type="checkbox">Проваленные</label>
+        <label><input type="checkbox">Неначатые</label>
+
+        <p>Cортировать по:</p>
+        <select>
+          <option>Алфавитный порядок</option>
+          <option>Сначала проваленные</option>
+          <option>Сначала неначатые</option>
+        </select>
+
+        <button>Применить</button>
+      </form>
+
+      <div class="trainer_list_container">
+        <div class="category_container">
+          <ul>
+            <li class="category category_selected category_all">Все</li>
+          </ul>
+        </div>
+        <div class="subject_container">
+          <ul>
+            <!-- <li class="subject">fdsfds</li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="trainer_container">
+        <p class="choose_trainer_message">Выберите тренажер из списка</p>
+        <form class="task_form hidden">
+          <h2>Выберите правильное определение:</h2>
+
+          <h2>Что возвращает данный метод?</h2>
+          <h2>Какие аргументы можно передавать?</h2>
+          checkbox
+          <select>
+            <option>cb-функция</option>
+            <option>элемент массива</option>
+            <option>индекс элемента массива</option>
+            <option>массив</option>
+            <option>строка</option>
+          </select>
+          <h2>К какому типу данных можно применить этот метод?</h2>
+          <label><input name="change_start_data" type="checkbox" value="true">массив</label>
+          <label><input name="change_start_data" type="checkbox" value="true">строка</label>
+          <label><input name="change_start_data" type="checkbox" value="true">объект</label>
+
+          <h2>Меняются ли исходные данные?</h2>
+
+          <label><input name="change_start_data" type="radio" value="true">Да</label>
+          <label><input name="change_start_data" type="radio" value="false">Нет</label>
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
