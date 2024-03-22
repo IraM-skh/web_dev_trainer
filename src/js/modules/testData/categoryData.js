@@ -2,10 +2,10 @@ const category = JSON.stringify([
   {
     id: 1,
     categoryName: "Числа",
-    output_ids: [1, 2, 3, 7, 8],
-    subjetsName: [
+    outputIds: [1, 2, 3, 7, 8],
+    subjectsName: [
       "Number()",
-      "toFixedt",
+      "toFixed",
       "Number.parseInt",
       "Number.isNaN",
       // "Math.PI",
@@ -17,8 +17,8 @@ const category = JSON.stringify([
   {
     id: 2,
     categoryName: "Массив",
-    output_ids: [1, 2, 3, 7, 8, 11, 12, 13, 14, 15, 16],
-    subjetsName: [
+    outputIds: [1, 2, 3, 7, 8, 11, 12, 13, 14, 15, 16],
+    subjectsName: [
       "length(arr)",
       "push",
       "unshift",
@@ -33,15 +33,15 @@ const category = JSON.stringify([
   {
     id: 3,
     categoryName: "Объект",
-    output_ids: [1, 2, 3, 4, 7, 8],
-    subjetsName: ["assign", "keys", "values", "entries"],
+    outputIds: [1, 2, 3, 4, 7, 8],
+    subjectsName: ["assign", "keys", "values", "entries"],
   },
 
   {
     id: 4,
     categoryName: "Cтрока",
-    output_ids: [1, 2, 3, 7, 8, 14],
-    subjetsName: [
+    outputIds: [1, 2, 3, 7, 8, 14],
+    subjectsName: [
       "length(str)",
       "concat",
       "toLowerCase",
@@ -142,14 +142,30 @@ const subject = JSON.stringify([
 ]);
 
 const question = JSON.stringify([
-  { question: "Выберите правильное определение:", ansvers_type: "radio" },
-  { question: "Какие аргументы можно передавать?", ansvers_type: "checkbox" },
-  { question: "Меняются ли исходные данные?", ansvers_type: "radio" },
-  { question: "Что возвращается", ansvers_type: "radio" },
+  {
+    question: "Выберите правильное определение:",
+    ansversType: "radio",
+    questionName: "description",
+  },
+  {
+    question: "Какие аргументы можно передавать?",
+    ansversType: "checkbox",
+    questionName: "args",
+  },
+  {
+    question: "Меняются ли исходные данные?",
+    ansversType: "radio",
+    questionName: "chengeData",
+  },
+  {
+    question: "Что возвращается",
+    ansversType: "radio",
+    questionName: "outputVariant",
+  },
 ]);
 
 const outputVariant = JSON.stringify([
-  { id: 1, type: "число" },
+  { id: 1, type: "Число" },
   { id: 2, type: "строка" },
   { id: 3, type: "массив" },
   { id: 4, type: "объект" },
@@ -167,7 +183,7 @@ const outputVariant = JSON.stringify([
   { id: 16, type: "результирующее значание" },
 ]);
 
-const ags = JSON.stringify([
+const args = JSON.stringify([
   "num",
   "str",
   "arg for cb",
@@ -179,4 +195,14 @@ const ags = JSON.stringify([
   "no",
 ]);
 
-export { ags, outputVariant, question, subject, category };
+const correctAnsvers = {
+  args: ["num", "no"],
+  description: "Кол-во символов",
+  chengeData: "Нет",
+  outputVariant: "Число",
+};
+
+const userResults = {
+  1: 3124,
+};
+export { args, outputVariant, question, subject, category, correctAnsvers };

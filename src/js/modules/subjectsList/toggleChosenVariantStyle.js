@@ -1,4 +1,5 @@
 import showTasks from "../trainerSection/showTasks";
+import setAllQA from "../htmlElements/trainerQA";
 const trainerListContainer = document.querySelector(".trainer_list_container");
 import { setAllSubject, setSbjectOnCategory } from "../htmlElements/subject";
 
@@ -21,6 +22,7 @@ function addEventListenerOnTrainerList() {
       const subject = [...document.querySelectorAll(".subject")];
       toggleActiveClassInList(subject, "subject_selected", event.target);
       showTasks();
+      setAllQA(event.target);
       return;
     }
   });

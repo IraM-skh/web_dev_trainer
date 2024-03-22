@@ -123,12 +123,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.subject = exports.question = exports.outputVariant = exports.category = exports.ags = void 0;
+exports.subject = exports.question = exports.outputVariant = exports.correctAnsvers = exports.category = exports.args = void 0;
 var category = exports.category = JSON.stringify([{
   id: 1,
   categoryName: "Числа",
-  output_ids: [1, 2, 3, 7, 8],
-  subjetsName: ["Number()", "toFixedt", "Number.parseInt", "Number.isNaN"
+  outputIds: [1, 2, 3, 7, 8],
+  subjectsName: ["Number()", "toFixed", "Number.parseInt", "Number.isNaN"
   // "Math.PI",
   // "Math.ciel",
   // "Math.random",
@@ -137,8 +137,8 @@ var category = exports.category = JSON.stringify([{
 }, {
   id: 2,
   categoryName: "Массив",
-  output_ids: [1, 2, 3, 7, 8, 11, 12, 13, 14, 15, 16],
-  subjetsName: ["length(arr)", "push", "unshift", "pop"
+  outputIds: [1, 2, 3, 7, 8, 11, 12, 13, 14, 15, 16],
+  subjectsName: ["length(arr)", "push", "unshift", "pop"
   // "shift",
   // "splice",
   // "reverse",
@@ -148,13 +148,13 @@ var category = exports.category = JSON.stringify([{
 }, {
   id: 3,
   categoryName: "Объект",
-  output_ids: [1, 2, 3, 4, 7, 8],
-  subjetsName: ["assign", "keys", "values", "entries"]
+  outputIds: [1, 2, 3, 4, 7, 8],
+  subjectsName: ["assign", "keys", "values", "entries"]
 }, {
   id: 4,
   categoryName: "Cтрока",
-  output_ids: [1, 2, 3, 7, 8, 14],
-  subjetsName: ["length(str)", "concat", "toLowerCase", "toUpperCase"
+  outputIds: [1, 2, 3, 7, 8, 14],
+  subjectsName: ["length(str)", "concat", "toLowerCase", "toUpperCase"
   // "indexOf",
   // "lastIndexOf",
   // "charAt",
@@ -212,20 +212,24 @@ var subject = exports.subject = JSON.stringify([{
 }]);
 var question = exports.question = JSON.stringify([{
   question: "Выберите правильное определение:",
-  ansvers_type: "radio"
+  ansversType: "radio",
+  questionName: "description"
 }, {
   question: "Какие аргументы можно передавать?",
-  ansvers_type: "checkbox"
+  ansversType: "checkbox",
+  questionName: "args"
 }, {
   question: "Меняются ли исходные данные?",
-  ansvers_type: "radio"
+  ansversType: "radio",
+  questionName: "chengeData"
 }, {
   question: "Что возвращается",
-  ansvers_type: "radio"
+  ansversType: "radio",
+  questionName: "outputVariant"
 }]);
 var outputVariant = exports.outputVariant = JSON.stringify([{
   id: 1,
-  type: "число"
+  type: "Число"
 }, {
   id: 2,
   type: "строка"
@@ -272,7 +276,16 @@ var outputVariant = exports.outputVariant = JSON.stringify([{
   id: 16,
   type: "результирующее значание"
 }]);
-var ags = exports.ags = JSON.stringify(["num", "str", "arg for cb", "cb", "el", "ind", "arr", "msec", "no"]);
+var args = exports.args = JSON.stringify(["num", "str", "arg for cb", "cb", "el", "ind", "arr", "msec", "no"]);
+var correctAnsvers = exports.correctAnsvers = {
+  args: ["num", "no"],
+  description: "Кол-во символов",
+  chengeData: "Нет",
+  outputVariant: "Число"
+};
+var userResults = {
+  1: 3124
+};
 },{}],"js/modules/htmlElements/category.js":[function(require,module,exports) {
 "use strict";
 
@@ -340,7 +353,81 @@ function showTasks() {
   taskForm.classList.remove("hidden");
 }
 var _default = exports.default = showTasks;
-},{}],"js/modules/subjectsList/toggleChosenVariantStyle.js":[function(require,module,exports) {
+},{}],"js/modules/htmlElements/trainerQA.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _categoryData = require("../testData/categoryData");
+var _category = require("./category");
+var questionList = JSON.parse(_categoryData.question);
+var subjectList = JSON.parse(_categoryData.subject);
+var argsList = JSON.parse(_categoryData.args);
+var outputVariantList = JSON.parse(_categoryData.outputVariant);
+var chengeData = ["Да", "Нет"];
+var taskForm = document.querySelector(".task_form");
+//question.question и question.ansversType question.questionName;
+//subject.description и subject.subjectName
+//args просто массив с аргументами
+//outputVariant.id outputVariant.type
+//categoryList.output_ids categoryList.subjectsName
+
+function setQestion(descriptionStr) {
+  return "<h2>".concat(descriptionStr, "</h2>"); // questionList.question
+}
+function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
+  //value- subjectList.description/args/chengeData/outputVariantList.type
+  //inputType - questionList.ansversType
+  //questionName - questionList.questionName
+  return "<input\n              name=\"".concat(questionName, "\" \n              type=\"").concat(inputType, "\"\n              value=\"").concat(value, "\"\n              id=\"").concat(idQestion).concat(idAnswer, "\" /><label for=\"").concat(idQestion).concat(idAnswer, "\">").concat(value, "</label>");
+}
+var sendAnswersBtn = "<button class=\"send_answers_btn submit_bnt\" type=\"submit\">\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C</button>";
+function getDescription(targetedSubject) {
+  return subjectList.find(function (subject) {
+    return subject.subjectName === targetedSubject.textContent;
+  }).description;
+}
+function getOutputVariant(targetedSubject) {
+  return _category.categoryList.find(function (category) {
+    return category.subjectsName.includes(targetedSubject.textContent);
+  }).outputIds.map(function (id) {
+    return outputVariantList.find(function (outputVariant) {
+      return outputVariant.id === id;
+    }).type;
+  });
+}
+function cleanFormsField() {
+  taskForm.innerHTML = "";
+}
+function setAllQA(targetedSubject) {
+  cleanFormsField();
+  var allAnswers = [{
+    type: "description",
+    values: getDescription(targetedSubject)
+  }, {
+    type: "args",
+    values: argsList
+  }, {
+    type: "chengeData",
+    values: chengeData
+  }, {
+    type: "outputVariant",
+    values: getOutputVariant(targetedSubject)
+  }];
+  questionList.forEach(function (question, questionIndex) {
+    taskForm.insertAdjacentHTML("beforeend", setQestion(question.question));
+    allAnswers.find(function (answer) {
+      return answer.type === question.questionName;
+    }).values.forEach(function (value, answerIndex) {
+      taskForm.insertAdjacentHTML("beforeend", setAnswer(value, question.ansversType, question.questionName, questionIndex, answerIndex));
+    });
+  });
+  taskForm.insertAdjacentHTML("beforeend", sendAnswersBtn);
+}
+var _default = exports.default = setAllQA;
+},{"../testData/categoryData":"js/modules/testData/categoryData.js","./category":"js/modules/htmlElements/category.js"}],"js/modules/subjectsList/toggleChosenVariantStyle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -349,6 +436,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.addEventListenerOnTrainerList = addEventListenerOnTrainerList;
 exports.trainerListContainer = void 0;
 var _showTasks = _interopRequireDefault(require("../trainerSection/showTasks"));
+var _trainerQA = _interopRequireDefault(require("../htmlElements/trainerQA"));
 var _subject = require("../htmlElements/subject");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -372,6 +460,7 @@ function addEventListenerOnTrainerList() {
       var subject = _toConsumableArray(document.querySelectorAll(".subject"));
       toggleActiveClassInList(subject, "subject_selected", event.target);
       (0, _showTasks.default)();
+      (0, _trainerQA.default)(event.target);
       return;
     }
   });
@@ -382,7 +471,7 @@ function toggleActiveClassInList(list, activeClassStr, target) {
   });
   target.classList.add(activeClassStr);
 }
-},{"../trainerSection/showTasks":"js/modules/trainerSection/showTasks.js","../htmlElements/subject":"js/modules/htmlElements/subject.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"../trainerSection/showTasks":"js/modules/trainerSection/showTasks.js","../htmlElements/trainerQA":"js/modules/htmlElements/trainerQA.js","../htmlElements/subject":"js/modules/htmlElements/subject.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -486,7 +575,131 @@ filterBtn.addEventListener("click", function (event) {
   filterContainer.classList.toggle("hidden");
   _toggleChosenVariantStyle.trainerListContainer.classList.toggle("hidden");
 });
-},{"../subjectsList/toggleChosenVariantStyle":"js/modules/subjectsList/toggleChosenVariantStyle.js"}],"js/index.js":[function(require,module,exports) {
+},{"../subjectsList/toggleChosenVariantStyle":"js/modules/subjectsList/toggleChosenVariantStyle.js"}],"js/modules/htmlElements/setTrainerMessage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setTrainerMessage = setTrainerMessage;
+exports.trainerMessageContainer = void 0;
+var trainerMessageContainer = exports.trainerMessageContainer = document.querySelector(".trainer_message");
+function setTrainerMessage(message) {
+  var isError = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  trainerMessageContainer.textContent = message;
+  if (isError) {
+    trainerMessageContainer.classList.add("error_message");
+  }
+  trainerMessageContainer.classList.remove("hidden");
+}
+},{}],"js/modules/htmlElements/cleanTrainerMessage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _setTrainerMessage = require("./setTrainerMessage");
+function cleanTrainerMessage() {
+  _setTrainerMessage.trainerMessageContainer.textContent = "";
+  _setTrainerMessage.trainerMessageContainer.classList.remove("error_message");
+  _setTrainerMessage.trainerMessageContainer.classList.add("hidden");
+}
+var _default = exports.default = cleanTrainerMessage;
+},{"./setTrainerMessage":"js/modules/htmlElements/setTrainerMessage.js"}],"js/modules/trainerSection/formEstimation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _categoryData = require("../testData/categoryData");
+function formEstimation(checkedInputsArray) {
+  var inputCheckboxes = checkedInputsArray.filter(function (input) {
+    return input.type === "checkbox";
+  });
+  var resultingArray = checkedInputsArray.map(function (input) {
+    if (input.type === "checkbox") {
+      return _categoryData.correctAnsvers[input.name].length === inputCheckboxes.length ? _categoryData.correctAnsvers[input.name].includes(input.value) : false;
+    }
+    return _categoryData.correctAnsvers[input.name] === input.value;
+  });
+  console.log(resultingArray.every(function (value) {
+    return value;
+  }));
+  return resultingArray.every(function (value) {
+    return value;
+  });
+}
+var _default = exports.default = formEstimation;
+},{"../testData/categoryData":"js/modules/testData/categoryData.js"}],"js/modules/trainerSection/sendForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _formEstimation = _interopRequireDefault(require("./formEstimation"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function sendForm(inputsForEstimation, showMessage) {
+  if ((0, _formEstimation.default)(inputsForEstimation)) {
+    showMessage("Все правильно, молодец!");
+    return;
+  }
+  showMessage("Неправильно! Можете попробовать снова.", true);
+}
+var _default = exports.default = sendForm;
+},{"./formEstimation":"js/modules/trainerSection/formEstimation.js"}],"js/modules/trainerSection/formValidator.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _setTrainerMessage = require("../htmlElements/setTrainerMessage");
+var _cleanTrainerMessage = _interopRequireDefault(require("../htmlElements/cleanTrainerMessage"));
+var _formEstimation = _interopRequireDefault(require("./formEstimation"));
+var _sendForm = _interopRequireDefault(require("./sendForm"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function formValidator(form) {
+  (0, _cleanTrainerMessage.default)();
+  var inputs = _toConsumableArray(form.querySelectorAll("input"));
+  var category = new Set(inputs.map(function (input) {
+    return input.name;
+  }));
+  var checkedInputs = inputs.filter(function (input) {
+    return input.checked;
+  });
+  var checkedCategory = new Set(checkedInputs.map(function (input) {
+    return input.name;
+  }));
+  if (!isEqualSet(category, checkedCategory)) {
+    (0, _setTrainerMessage.setTrainerMessage)("Заполните все поля", true);
+    return;
+  }
+  console.log("результат принят! Молодец!");
+  (0, _sendForm.default)(checkedInputs, _setTrainerMessage.setTrainerMessage);
+}
+function isEqualSet(set1, set2) {
+  console.log();
+  if (set1.size != set2.size) {
+    return false;
+  }
+  set1.forEach(function (element) {
+    if (!set2.has(element)) {
+      return false;
+    }
+  });
+  return true;
+}
+var _default = exports.default = formValidator;
+},{"../htmlElements/setTrainerMessage":"js/modules/htmlElements/setTrainerMessage.js","../htmlElements/cleanTrainerMessage":"js/modules/htmlElements/cleanTrainerMessage.js","./formEstimation":"js/modules/trainerSection/formEstimation.js","./sendForm":"js/modules/trainerSection/sendForm.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _category = require("./modules/htmlElements/category.js");
@@ -495,12 +708,23 @@ var _toggleChosenVariantStyle = require("./modules/subjectsList/toggleChosenVari
 require("../scss/main.scss");
 var _changeNavBtnStyle = _interopRequireDefault(require("./modules/nav/changeNavBtnStyle"));
 require("../js/modules/filter/toggleFilter.js");
+var _formValidator = _interopRequireDefault(require("./modules/trainerSection/formValidator.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 (0, _category.setCategory)();
 (0, _subject.setAllSubject)();
 (0, _changeNavBtnStyle.default)();
 (0, _toggleChosenVariantStyle.addEventListenerOnTrainerList)();
-},{"./modules/htmlElements/category.js":"js/modules/htmlElements/category.js","./modules/htmlElements/subject.js":"js/modules/htmlElements/subject.js","./modules/subjectsList/toggleChosenVariantStyle.js":"js/modules/subjectsList/toggleChosenVariantStyle.js","../scss/main.scss":"scss/main.scss","./modules/nav/changeNavBtnStyle":"js/modules/nav/changeNavBtnStyle.js","../js/modules/filter/toggleFilter.js":"js/modules/filter/toggleFilter.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var mainContainer = document.querySelector(".main_container");
+document.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (event.target.classList.contains("filter_container")) {
+    console.log("фильтр");
+  }
+  if (event.target.classList.contains("task_form")) {
+    (0, _formValidator.default)(event.target);
+  }
+});
+},{"./modules/htmlElements/category.js":"js/modules/htmlElements/category.js","./modules/htmlElements/subject.js":"js/modules/htmlElements/subject.js","./modules/subjectsList/toggleChosenVariantStyle.js":"js/modules/subjectsList/toggleChosenVariantStyle.js","../scss/main.scss":"scss/main.scss","./modules/nav/changeNavBtnStyle":"js/modules/nav/changeNavBtnStyle.js","../js/modules/filter/toggleFilter.js":"js/modules/filter/toggleFilter.js","./modules/trainerSection/formValidator.js":"js/modules/trainerSection/formValidator.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -525,7 +749,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50435" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53539" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -27,9 +27,9 @@
       </div>
       <form class="filter_container hidden">
         <p>Отображать:</p>
-        <label><input type="checkbox">Пройденые</label>
-        <label><input type="checkbox">Проваленные</label>
-        <label><input type="checkbox">Неначатые</label>
+        <input type="checkbox" id="filter_checkbox_1" value="done" checked=""><label for="filter_checkbox_1">Пройденые</label>
+        <input type="checkbox" id="filter_checkbox_2" value="failed" checked=""><label for="filter_checkbox_2">Проваленные</label>
+        <input type="checkbox" id="filter_checkbox_3" value="unstarted" checked=""><label for="filter_checkbox_3">Неначатые</label>
 
         <p>Cортировать по:</p>
         <select>
@@ -38,7 +38,9 @@
           <option>Сначала неначатые</option>
         </select>
 
-        <button>Применить</button>
+        <button class="setFilter_bnt submit_bnt" type="submit">
+          Применить
+        </button>
       </form>
 
       <div class="trainer_list_container">
@@ -55,29 +57,8 @@
       </div>
       <div class="trainer_container">
         <p class="choose_trainer_message">Выберите тренажер из списка</p>
-        <form class="task_form hidden">
-          <h2>Выберите правильное определение:</h2>
-
-          <h2>Что возвращает данный метод?</h2>
-          <h2>Какие аргументы можно передавать?</h2>
-          checkbox
-          <select>
-            <option>cb-функция</option>
-            <option>элемент массива</option>
-            <option>индекс элемента массива</option>
-            <option>массив</option>
-            <option>строка</option>
-          </select>
-          <h2>К какому типу данных можно применить этот метод?</h2>
-          <label><input name="change_start_data" type="checkbox" value="true">массив</label>
-          <label><input name="change_start_data" type="checkbox" value="true">строка</label>
-          <label><input name="change_start_data" type="checkbox" value="true">объект</label>
-
-          <h2>Меняются ли исходные данные?</h2>
-
-          <label><input name="change_start_data" type="radio" value="true">Да</label>
-          <label><input name="change_start_data" type="radio" value="false">Нет</label>
-        </form>
+        <form class="task_form hidden"></form>
+        <p class="trainer_message hidden"></p>
       </div>
     </main>
     <footer></footer>
