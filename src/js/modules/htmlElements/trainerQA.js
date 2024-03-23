@@ -5,6 +5,7 @@ import {
   outputVariant,
 } from "../testData/categoryData";
 import { categoryList } from "./category";
+import cleanTrainerMessage from "./cleanTrainerMessage";
 const questionList = JSON.parse(question);
 const subjectList = JSON.parse(subject);
 const argsList = JSON.parse(args);
@@ -56,6 +57,7 @@ function cleanFormsField() {
 }
 function setAllQA(targetedSubject) {
   cleanFormsField();
+  cleanTrainerMessage();
   const allAnswers = [
     { type: "description", values: getDescription(targetedSubject) },
     { type: "args", values: argsList },
@@ -82,4 +84,4 @@ function setAllQA(targetedSubject) {
   taskForm.insertAdjacentHTML("beforeend", sendAnswersBtn);
 }
 
-export default setAllQA;
+export { setAllQA, taskForm };

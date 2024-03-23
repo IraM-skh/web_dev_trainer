@@ -15,3 +15,11 @@ body {
 .hidden {
   display: none;
 }
+
+.solved {
+  color: forestgreen;
+}
+
+.failed {
+  color: crimson;
+}

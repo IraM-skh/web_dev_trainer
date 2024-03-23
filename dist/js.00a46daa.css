@@ -206,7 +206,8 @@ li:hover {
   background-color: #d8d8d8;
 }
 
-.submit_bnt {
+.submit_bnt,
+.next_btn {
   display: block;
   background-color: rgb(54, 194, 189);
   border-radius: 0.5rem;
@@ -326,6 +327,14 @@ body {
 
 .hidden {
   display: none;
+}
+
+.solved {
+  color: forestgreen;
+}
+
+.failed {
+  color: crimson;
 }
 
 /*# sourceMappingURL=/js.00a46daa.css.map */

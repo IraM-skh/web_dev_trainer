@@ -59,7 +59,8 @@ li:hover {
   background-color: $choosen-bg-color;
 }
 
-.submit_bnt {
+.submit_bnt,
+.next_btn {
   display: block;
   background-color: $standard-border-colrgb;
   border-radius: 0.5rem;

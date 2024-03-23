@@ -5,6 +5,11 @@ import "../scss/main.scss";
 import changeNavBtnStyle from "./modules/nav/changeNavBtnStyle";
 import "../js/modules/filter/toggleFilter.js";
 import formValidator from "./modules/trainerSection/formValidator.js";
+import { taskForm } from "./modules/htmlElements/trainerQA.js";
+import changeSubjectOnNextBtn from "./modules/trainerSection/changeSubjectOnNextBtn.js";
+import { filterContainer } from "./modules/filter/filterHtmlElements.js";
+import checkFilterData from "./modules/filter/checkFilterData.js";
+import { filterApplying } from "./modules/filter/filterApplying.js";
 setCategory();
 setAllSubject();
 changeNavBtnStyle();
@@ -14,9 +19,19 @@ const mainContainer = document.querySelector(".main_container");
 document.addEventListener("submit", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("filter_container")) {
-    console.log("фильтр");
+    filterApplying(event.target);
   }
   if (event.target.classList.contains("task_form")) {
     formValidator(event.target);
   }
+});
+
+taskForm.addEventListener("click", (event) => {
+  if (event.target.classList.contains("next_btn")) {
+    changeSubjectOnNextBtn();
+  }
+});
+
+filterContainer.addEventListener("change", (event) => {
+  checkFilterData(event.target);
 });

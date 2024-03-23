@@ -5,4 +5,4 @@ function showTasks() {
   taskForm.classList.remove("hidden");
 }
 
-export default showTasks;
+export { showTasks, chooseTrainerMessage, taskForm };

@@ -1,7 +1,11 @@
 import { trainerListContainer } from "../subjectsList/toggleChosenVariantStyle";
-const filterBtn = document.querySelector(".filter_btn svg");
-const filterContainer = document.querySelector(".filter_container");
-filterBtn.addEventListener("click", (event) => {
+import { filterBtn, filterContainer } from "./filterHtmlElements";
+function toggleFilter() {
   filterContainer.classList.toggle("hidden");
   trainerListContainer.classList.toggle("hidden");
+}
+filterBtn.addEventListener("click", (event) => {
+  toggleFilter();
 });
+
+export default toggleFilter;

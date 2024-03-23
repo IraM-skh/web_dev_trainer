@@ -1,10 +1,9 @@
-import showTasks from "../trainerSection/showTasks";
-import setAllQA from "../htmlElements/trainerQA";
+import { showTasks } from "../trainerSection/showTasks";
+import { setAllQA } from "../htmlElements/trainerQA";
 const trainerListContainer = document.querySelector(".trainer_list_container");
 import { setAllSubject, setSbjectOnCategory } from "../htmlElements/subject";
-
-const categoryContainer = document.querySelector(".category_container");
-const subjectContainer = document.querySelector(".subject_container");
+import { getActiveSubject } from "../htmlElements/rewriteSubjectResult";
+import setSelectsdSubjectOnChangeCategory from "./setSelectsdSubjectOnChangeCategory";
 
 function addEventListenerOnTrainerList() {
   const category = [...document.querySelectorAll(".category")];
@@ -15,11 +14,13 @@ function addEventListenerOnTrainerList() {
       event.target.classList.contains("category_all")
         ? setAllSubject()
         : setSbjectOnCategory(event.target.textContent);
+      setSelectsdSubjectOnChangeCategory();
       return;
     }
 
     if (event.target.classList.contains("subject")) {
       const subject = [...document.querySelectorAll(".subject")];
+      getActiveSubject(event.target);
       toggleActiveClassInList(subject, "subject_selected", event.target);
       showTasks();
       setAllQA(event.target);

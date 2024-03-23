@@ -203,6 +203,15 @@ const correctAnsvers = {
 };
 
 const userResults = {
-  1: 3124,
+  solved: ["Number()", "push", "pop", "keys"],
+  failed: ["toFixed", "values"],
 };
-export { args, outputVariant, question, subject, category, correctAnsvers };
+export {
+  args,
+  outputVariant,
+  question,
+  subject,
+  category,
+  correctAnsvers,
+  userResults,
+};
