@@ -33,7 +33,7 @@ function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
               id="${idQestion}${idAnswer}" /><label for="${idQestion}${idAnswer}">${value}</label>`;
 }
 
-const sendAnswersBtn = `<button class="send_answers_btn submit_bnt" type="submit">Проверить</button>`;
+const sendAnswersBtn = `<div class = "btns_qa_container"><button class="send_answers_btn submit_btn" type="submit">Проверить</button></div>`;
 
 function getDescription(targetedSubject) {
   return subjectList.find(

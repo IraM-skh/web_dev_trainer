@@ -395,7 +395,7 @@ function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
   //questionName - questionList.questionName
   return "<input\n              name=\"".concat(questionName, "\" \n              type=\"").concat(inputType, "\"\n              value=\"").concat(value, "\"\n              id=\"").concat(idQestion).concat(idAnswer, "\" /><label for=\"").concat(idQestion).concat(idAnswer, "\">").concat(value, "</label>");
 }
-var sendAnswersBtn = "<button class=\"send_answers_btn submit_bnt\" type=\"submit\">\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C</button>";
+var sendAnswersBtn = "<div class = \"btns_qa_container\"><button class=\"send_answers_btn submit_btn\" type=\"submit\">\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C</button></div>";
 function getDescription(targetedSubject) {
   return subjectList.find(function (subject) {
     return subject.subjectName === targetedSubject.textContent;
@@ -466,6 +466,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _rewriteSubjectResult = require("../htmlElements/rewriteSubjectResult");
 var _showTasks = require("../trainerSection/showTasks");
+var _cleanTrainerMessage = _interopRequireDefault(require("../htmlElements/cleanTrainerMessage"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -487,12 +489,13 @@ function setSelectsdSubjectOnChangeCategory() {
     activeSubjectNow[0].classList.add("subject_selected");
     (0, _rewriteSubjectResult.getActiveSubject)(activeSubjectNow[0]);
   } else {
+    (0, _cleanTrainerMessage.default)();
     _showTasks.chooseTrainerMessage.classList.remove("hidden");
     _showTasks.taskForm.classList.add("hidden");
   }
 }
 var _default = exports.default = setSelectsdSubjectOnChangeCategory;
-},{"../htmlElements/rewriteSubjectResult":"js/modules/htmlElements/rewriteSubjectResult.js","../trainerSection/showTasks":"js/modules/trainerSection/showTasks.js"}],"js/modules/subjectsList/toggleChosenVariantStyle.js":[function(require,module,exports) {
+},{"../htmlElements/rewriteSubjectResult":"js/modules/htmlElements/rewriteSubjectResult.js","../trainerSection/showTasks":"js/modules/trainerSection/showTasks.js","../htmlElements/cleanTrainerMessage":"js/modules/htmlElements/cleanTrainerMessage.js"}],"js/modules/subjectsList/toggleChosenVariantStyle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -548,8 +551,7 @@ exports.default = void 0;
 var _toggleChosenVariantStyle = require("../subjectsList/toggleChosenVariantStyle");
 var _filterHtmlElements = require("./filterHtmlElements");
 function toggleFilter() {
-  _filterHtmlElements.filterContainer.classList.toggle("hidden");
-  _toggleChosenVariantStyle.trainerListContainer.classList.toggle("hidden");
+  _filterHtmlElements.filterContainer.classList.toggle("show_filter_container");
 }
 _filterHtmlElements.filterBtn.addEventListener("click", function (event) {
   toggleFilter();
@@ -786,11 +788,19 @@ module.hot.accept(reloadCSS);
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/categoryAndSubjctList.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/filter.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
 },{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/main.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./modules/reset.scss":"scss/modules/reset.scss","./modules/header.scss":"scss/modules/header.scss","./modules/trainerSection.scss":"scss/modules/trainerSection.scss","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/modules/nav/changeNavBtnStyle.js":[function(require,module,exports) {
+},{"./modules/reset.scss":"scss/modules/reset.scss","./modules/header.scss":"scss/modules/header.scss","./modules/trainerSection.scss":"scss/modules/trainerSection.scss","./modules/categoryAndSubjctList.scss":"scss/modules/categoryAndSubjctList.scss","./modules/filter.scss":"scss/modules/filter.scss","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/modules/nav/changeNavBtnStyle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -856,7 +866,7 @@ function addNextBtn(form) {
   if (existingNextBtn) {
     return;
   }
-  form.insertAdjacentHTML("beforeend", nextBtn);
+  form.querySelector(".send_answers_btn").insertAdjacentHTML("afterend", nextBtn);
 }
 var _default = exports.default = addNextBtn;
 },{}],"js/modules/trainerSection/sendForm.js":[function(require,module,exports) {
@@ -875,7 +885,9 @@ function sendForm(inputsForEstimation, showMessage) {
   if ((0, _formEstimation.default)(inputsForEstimation)) {
     showMessage("Все правильно, молодец!");
     (0, _rewriteSubjectResult.rewriteSubjectResult)("solved");
-    (0, _addNextBtn.default)(_trainerQA.taskForm);
+    if (_rewriteSubjectResult.activeSubject.nextElementSibling) {
+      (0, _addNextBtn.default)(_trainerQA.taskForm);
+    }
     return;
   }
   showMessage("Неправильно! Можете попробовать снова.", true);
@@ -989,7 +1001,7 @@ var _subject = require("./modules/htmlElements/subject.js");
 var _toggleChosenVariantStyle = require("./modules/subjectsList/toggleChosenVariantStyle.js");
 require("../scss/main.scss");
 var _changeNavBtnStyle = _interopRequireDefault(require("./modules/nav/changeNavBtnStyle"));
-require("../js/modules/filter/toggleFilter.js");
+var _toggleFilter = _interopRequireDefault(require("../js/modules/filter/toggleFilter.js"));
 var _formValidator = _interopRequireDefault(require("./modules/trainerSection/formValidator.js"));
 var _trainerQA = require("./modules/htmlElements/trainerQA.js");
 var _changeSubjectOnNextBtn = _interopRequireDefault(require("./modules/trainerSection/changeSubjectOnNextBtn.js"));
@@ -1006,6 +1018,7 @@ document.addEventListener("submit", function (event) {
   event.preventDefault();
   if (event.target.classList.contains("filter_container")) {
     (0, _filterApplying.filterApplying)(event.target);
+    (0, _toggleFilter.default)();
   }
   if (event.target.classList.contains("task_form")) {
     (0, _formValidator.default)(event.target);
@@ -1044,7 +1057,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54874" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

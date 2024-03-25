@@ -1,70 +1,75 @@
-$choosen-border-color: #333;
-$choosen-bg-color: #d8d8d8;
-$standard-bg-color: #f5f5f5;
-$standard-border-colrgb: rgb(54, 194, 189);
+$choosen-border-color: #333; // в лист
+$choosen-bg-color: #d8d8d8; // в лист
+$standard-bg-color: #f5f5f5; //в лист
+$standard-border-colrgb: rgb(54, 194, 189); // в лист
+$red-color: rgb(255, 0, 106);
 $main-bg-color: white;
 $border-indent: 5%;
 
 main {
   display: flex;
-  justify-content: space-around;
   height: 80vh;
   overflow-y: hidden;
+  max-width: 1200px;
+  margin: 1rem auto 0 auto;
 }
-.filter_btn svg {
-  stroke: $choosen-border-color;
-}
-.filter_container {
-  // padding: 0 1rem;
+
+.filet_and_subject_container {
+  position: relative;
   width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
-.trainer_list_container {
-  width: 30%;
-  display: flex;
-}
-.category_container {
-  overflow-y: auto;
-  width: 50%;
-}
-.subject_container {
-  overflow-y: auto;
-  width: 50%;
-}
+
 .trainer_container {
-  flex-grow: 1;
-  text-align: center;
+  position: relative;
+  width: 66%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  background-color: #ffffff;
+  overflow: auto;
 }
-li {
-  padding: 0.5rem;
-  background-color: $standard-bg-color;
-  border-bottom: 1px solid $standard-border-colrgb;
-  transition: background-color 1s;
+.choose_trainer_message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
 }
-
-li:hover {
-  background-color: $standard-border-colrgb;
-}
-
-.category_selected {
-  border-left: 5px solid $choosen-border-color;
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-  background-color: $choosen-bg-color;
-}
-
-.subject_selected {
-  background-color: $choosen-bg-color;
-}
-
-.submit_bnt,
+.submit_btn,
 .next_btn {
   display: block;
   background-color: $standard-border-colrgb;
   border-radius: 0.5rem;
   padding: 0.7rem;
+}
+
+.btns_qa_container {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.task_form {
+  h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid $standard-border-colrgb;
+    font-size: 1.2rem;
+    font-family: "Bitter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  h2:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  label {
+    padding-right: 1.5rem;
+    margin-top: 0.5rem;
+  }
 }
 
 input[type="checkbox"]:checked,
@@ -81,8 +86,8 @@ input[type="radio"]:checked + label,
 input[type="radio"]:not(:checked) + label {
   display: inline-block;
   position: relative;
-  padding-left: 28px;
-  line-height: 20px;
+  padding-left: 1.5rem;
+  line-height: 1.4rem;
   cursor: pointer;
 }
 
@@ -157,10 +162,19 @@ input[type="checkbox"]:checked + label:after,
 input[type="radio"]:checked + label:after {
   opacity: 1;
 }
+
 .trainer_message {
-  color: greenyellow;
+  color: $standard-border-colrgb;
 }
 
 .error_message {
-  color: red;
+  color: $red-color;
+}
+
+.trainer_message,
+.error_message {
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 }

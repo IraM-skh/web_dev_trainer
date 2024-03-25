@@ -1,25 +1,32 @@
 @import url(./modules/reset.scss);
 @import url(./modules/header.scss);
 @import url(./modules/trainerSection.scss);
+@import url(./modules/categoryAndSubjctList.scss);
+@import url(./modules/filter.scss);
+
 body {
-  font-size: 20px;
+  font-size: 1.1rem;
+
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  // font-family: "Roboto", sans-serif;
+  // font-weight: 300;
+  // font-style: normal;
 }
 .selected_section_btn {
   color: red;
-}
-.main_container {
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .hidden {
   display: none;
 }
 
-.solved {
-  color: forestgreen;
-}
-
-.failed {
-  color: crimson;
+button {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }

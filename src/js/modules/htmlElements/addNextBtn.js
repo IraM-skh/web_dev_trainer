@@ -4,7 +4,9 @@ function addNextBtn(form) {
   if (existingNextBtn) {
     return;
   }
-  form.insertAdjacentHTML("beforeend", nextBtn);
+  form
+    .querySelector(".send_answers_btn")
+    .insertAdjacentHTML("afterend", nextBtn);
 }
 
 export default addNextBtn;

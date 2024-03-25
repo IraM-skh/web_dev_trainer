@@ -3,6 +3,7 @@ import {
   getActiveSubject,
 } from "../htmlElements/rewriteSubjectResult";
 import { chooseTrainerMessage, taskForm } from "../trainerSection/showTasks";
+import cleanTrainerMessage from "../htmlElements/cleanTrainerMessage";
 function setSelectsdSubjectOnChangeCategory() {
   const subjects = [...document.querySelectorAll(".subject")];
   const subjectsValues = subjects.map(
@@ -19,6 +20,7 @@ function setSelectsdSubjectOnChangeCategory() {
     activeSubjectNow[0].classList.add("subject_selected");
     getActiveSubject(activeSubjectNow[0]);
   } else {
+    cleanTrainerMessage();
     chooseTrainerMessage.classList.remove("hidden");
     taskForm.classList.add("hidden");
   }

@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Тренажер</title>
     <script defer src="./js/index.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="main_container">
@@ -18,7 +40,7 @@
       </nav>
     </header>
     <main class="main_container">
-      <div>
+      <div class="filter_icon_container">
         <button class="filter_btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,58 +57,60 @@
           </svg>
         </button>
       </div>
-      <form class="filter_container hidden">
-        <p>Отображать:</p>
-        <input
-          type="checkbox"
-          id="filter_checkbox_1"
-          value="solved"
-          class="filter_checkbox"
-          checked
-        /><label for="filter_checkbox_1">Успешно пройденные</label>
-        <input
-          type="checkbox"
-          id="filter_checkbox_2"
-          value="failed"
-          class="filter_checkbox"
-          checked
-        /><label for="filter_checkbox_2">Проваленные</label>
-        <input
-          type="checkbox"
-          id="filter_checkbox_3"
-          value="unstarted"
-          class="filter_checkbox"
-          checked
-        /><label for="filter_checkbox_3">Неначатые</label>
+      <div class="filet_and_subject_container">
+        <form class="filter_container">
+          <p>Отображать:</p>
+          <input
+            type="checkbox"
+            id="filter_checkbox_1"
+            value="solved"
+            class="filter_checkbox"
+            checked
+          /><label for="filter_checkbox_1">Успешно пройденные</label>
+          <input
+            type="checkbox"
+            id="filter_checkbox_2"
+            value="failed"
+            class="filter_checkbox"
+            checked
+          /><label for="filter_checkbox_2">Проваленные</label>
+          <input
+            type="checkbox"
+            id="filter_checkbox_3"
+            value="unstarted"
+            class="filter_checkbox"
+            checked
+          /><label for="filter_checkbox_3">Неначатые</label>
 
-        <p>Cортировать по:</p>
-        <select class="filter_sort">
-          <option class="alphabet_order_sort" value="alphabet">
-            Алфавитный порядок
-          </option>
-          <option class="failed_sort" value="failed">
-            Сначала проваленные
-          </option>
-          <option class="unbegun_sort" value="unstarted">
-            Сначала неначатые
-          </option>
-        </select>
+          <p>Cортировать по:</p>
+          <select class="filter_sort">
+            <option class="alphabet_order_sort" value="alphabet">
+              Алфавитный порядок
+            </option>
+            <option class="failed_sort" value="failed">
+              Сначала проваленные
+            </option>
+            <option class="unbegun_sort" value="unstarted">
+              Сначала неначатые
+            </option>
+          </select>
 
-        <button class="setFilter_bnt submit_bnt" type="submit">
-          Применить
-        </button>
-      </form>
+          <button class="setFilter_btn submit_btn" type="submit">
+            Применить
+          </button>
+        </form>
 
-      <div class="trainer_list_container">
-        <div class="category_container">
-          <ul>
-            <li class="category category_selected category_all">Все</li>
-          </ul>
-        </div>
-        <div class="subject_container">
-          <ul>
-            <!-- <li class="subject">fdsfds</li> -->
-          </ul>
+        <div class="trainer_list_container">
+          <div class="category_container">
+            <ul>
+              <li class="category category_selected category_all">Все</li>
+            </ul>
+          </div>
+          <div class="subject_container">
+            <ul>
+              <!-- <li class="subject">fdsfds</li> -->
+            </ul>
+          </div>
         </div>
       </div>
       <div class="trainer_container">

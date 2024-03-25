@@ -10,6 +10,7 @@ import changeSubjectOnNextBtn from "./modules/trainerSection/changeSubjectOnNext
 import { filterContainer } from "./modules/filter/filterHtmlElements.js";
 import checkFilterData from "./modules/filter/checkFilterData.js";
 import { filterApplying } from "./modules/filter/filterApplying.js";
+import toggleFilter from "../js/modules/filter/toggleFilter.js";
 setCategory();
 setAllSubject();
 changeNavBtnStyle();
@@ -20,6 +21,7 @@ document.addEventListener("submit", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("filter_container")) {
     filterApplying(event.target);
+    toggleFilter();
   }
   if (event.target.classList.contains("task_form")) {
     formValidator(event.target);

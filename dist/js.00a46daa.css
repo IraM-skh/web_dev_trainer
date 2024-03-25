@@ -148,70 +148,66 @@ header {
 }
 main {
   display: flex;
-  justify-content: space-around;
   height: 80vh;
   overflow-y: hidden;
+  max-width: 1200px;
+  margin: 1rem auto 0 auto;
 }
 
-.filter_btn svg {
-  stroke: #333;
-}
-
-.filter_container {
+.filet_and_subject_container {
+  position: relative;
   width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.trainer_list_container {
-  width: 30%;
-  display: flex;
-}
-
-.category_container {
-  overflow-y: auto;
-  width: 50%;
-}
-
-.subject_container {
-  overflow-y: auto;
-  width: 50%;
 }
 
 .trainer_container {
-  flex-grow: 1;
-  text-align: center;
+  position: relative;
+  width: 66%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  background-color: #ffffff;
+  overflow: auto;
 }
 
-li {
-  padding: 0.5rem;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid rgb(54, 194, 189);
-  transition: background-color 1s;
+.choose_trainer_message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
-li:hover {
-  background-color: rgb(54, 194, 189);
-}
-
-.category_selected {
-  border-left: 5px solid #333;
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-  background-color: #d8d8d8;
-}
-
-.subject_selected {
-  background-color: #d8d8d8;
-}
-
-.submit_bnt,
+.submit_btn,
 .next_btn {
   display: block;
   background-color: rgb(54, 194, 189);
   border-radius: 0.5rem;
   padding: 0.7rem;
+}
+
+.btns_qa_container {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.task_form h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgb(54, 194, 189);
+  font-size: 1.2rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.task_form h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.task_form label {
+  padding-right: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 input[type=checkbox]:checked,
@@ -228,8 +224,8 @@ input[type=radio]:checked + label,
 input[type=radio]:not(:checked) + label {
   display: inline-block;
   position: relative;
-  padding-left: 28px;
-  line-height: 20px;
+  padding-left: 1.5rem;
+  line-height: 1.4rem;
   cursor: pointer;
 }
 
@@ -306,35 +302,196 @@ input[type=radio]:checked + label:after {
 }
 
 .trainer_message {
-  color: greenyellow;
+  color: rgb(54, 194, 189);
 }
 
 .error_message {
-  color: red;
+  color: rgb(255, 0, 106);
+}
+
+.trainer_message,
+.error_message {
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+@charset "UTF-8";
+.solved {
+  color: rgb(0, 159, 159);
+}
+
+.failed {
+  color: rgb(255, 0, 106);
+}
+
+.trainer_list_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  left: 0;
+  top: 0;
+  transition: all 0.2s linear;
+}
+
+.category_container {
+  overflow-y: auto;
+  width: 50%;
+}
+
+.subject_container {
+  overflow-y: auto;
+  width: 50%;
+}
+
+li {
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid rgb(54, 194, 189);
+  transition: background-color 1s;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+li:hover {
+  background-color: rgb(54, 194, 189);
+}
+
+.category_selected {
+  border-left: 5px solid #333333;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  background-color: #d8d8d8;
+}
+
+.subject_selected {
+  background-color: #d8d8d8;
+}
+
+::-webkit-scrollbar {
+  width: 5px; /* Ширина всего элемента навигации */
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Цвет дорожки */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333333; /* Цвет бегунка */
+  border-radius: 1rem; /* Округление бегунка */
+}
+.filter_icon_container {
+  background-color: #fff;
+  width: 4%;
+  z-index: 3;
+}
+
+.filter_btn {
+  width: 100%;
+  padding: 0;
+}
+
+.filter_btn svg {
+  width: 100%;
+  stroke: #333;
+}
+
+.filter_container {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0 1rem;
+  background-color: #fff;
+  position: absolute;
+  left: -100%;
+  transition: all 0.2s linear;
+  z-index: 2;
+}
+.filter_container p {
+  font-size: 1.2rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.filter_sort {
+  display: block;
+  font-size: 1.07rem;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #444;
+  line-height: 1.3rem;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #a3a3a3;
+  border-radius: 0.5rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2336c2bd%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+
+.filter_sort::-ms-expand {
+  display: none;
+}
+
+.filter_sort:hover {
+  border-color: #888;
+}
+
+.filter_sort:focus {
+  border-color: transparent;
+  box-shadow: 0 0 1px 2px rgb(54, 194, 189);
+  box-shadow: 0 0 0 2px -moz-mac-focusring;
+  outline: none;
+}
+
+.filter_sort option {
+  font-weight: normal;
+}
+
+.setFilter_btn {
+  margin: 0 auto;
+}
+
+.show_filter_container {
+  left: 0;
 }
 body {
-  font-size: 20px;
+  font-size: 1.1rem;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .selected_section_btn {
   color: red;
 }
 
-.main_container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .hidden {
   display: none;
 }
 
-.solved {
-  color: forestgreen;
-}
-
-.failed {
-  color: crimson;
+button {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 /*# sourceMappingURL=/js.00a46daa.css.map */
