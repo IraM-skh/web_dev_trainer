@@ -1,7 +1,8 @@
-import { setTrainerMessage } from "../htmlElements/setTrainerMessage";
-import cleanTrainerMessage from "../htmlElements/cleanTrainerMessage";
-import formEstimation from "./formEstimation";
+import setTrainerMessage from "./setTrainerMessage";
+import cleanTrainerMessage from "./cleanTrainerMessage";
 import sendForm from "./sendForm";
+import { trainerContainer } from "./trainerSectionHTML";
+
 function formValidator(form) {
   cleanTrainerMessage();
   const inputs = [...form.querySelectorAll("input")];
@@ -13,8 +14,13 @@ function formValidator(form) {
     return;
   }
 
-  console.log("результат принят! Молодец!");
   sendForm(checkedInputs, setTrainerMessage);
+
+  trainerContainer.scrollBy({
+    left: 0,
+    top: trainerContainer.offsetHeight,
+    behavior: "smooth",
+  });
 }
 
 function isEqualSet(set1, set2) {

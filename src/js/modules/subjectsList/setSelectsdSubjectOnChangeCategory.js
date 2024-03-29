@@ -1,9 +1,10 @@
+import { getActiveSubject, activeSubject } from "./rewriteSubjectResult";
 import {
-  activeSubject,
-  getActiveSubject,
-} from "../htmlElements/rewriteSubjectResult";
-import { chooseTrainerMessage, taskForm } from "../trainerSection/showTasks";
-import cleanTrainerMessage from "../htmlElements/cleanTrainerMessage";
+  taskForm,
+  chooseTrainerMessage,
+} from "../trainerSection/trainerSectionHTML";
+import cleanTrainerMessage from "../trainerSection/cleanTrainerMessage";
+
 function setSelectsdSubjectOnChangeCategory() {
   const subjects = [...document.querySelectorAll(".subject")];
   const subjectsValues = subjects.map(

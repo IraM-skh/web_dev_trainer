@@ -1,4 +1,4 @@
-import { trainerMessageContainer } from "./setTrainerMessage";
+import { trainerMessageContainer } from "./trainerSectionHTML";
 function cleanTrainerMessage() {
   trainerMessageContainer.textContent = "";
   trainerMessageContainer.classList.remove("error_message");

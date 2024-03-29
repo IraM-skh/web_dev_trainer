@@ -2,9 +2,10 @@ import formEstimation from "./formEstimation";
 import {
   rewriteSubjectResult,
   activeSubject,
-} from "../htmlElements/rewriteSubjectResult";
-import addNextBtn from "../htmlElements/addNextBtn";
-import { taskForm } from "../htmlElements/trainerQA";
+} from "../subjectsList/rewriteSubjectResult";
+
+import addNextBtn from "./addNextBtn";
+import { taskForm } from "./trainerSectionHTML";
 
 function sendForm(inputsForEstimation, showMessage) {
   if (formEstimation(inputsForEstimation)) {

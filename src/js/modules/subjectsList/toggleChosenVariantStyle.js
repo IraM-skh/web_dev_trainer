@@ -1,8 +1,8 @@
 import { showTasks } from "../trainerSection/showTasks";
-import { setAllQA } from "../htmlElements/trainerQA";
+import setAllQA from "../trainerSection/trainerQA";
 const trainerListContainer = document.querySelector(".trainer_list_container");
-import { setAllSubject, setSbjectOnCategory } from "../htmlElements/subject";
-import { getActiveSubject } from "../htmlElements/rewriteSubjectResult";
+import { setAllSubject, setSbjectOnCategory } from "./subject";
+import { getActiveSubject } from "./rewriteSubjectResult";
 import setSelectsdSubjectOnChangeCategory from "./setSelectsdSubjectOnChangeCategory";
 
 function addEventListenerOnTrainerList() {

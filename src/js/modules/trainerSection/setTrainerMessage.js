@@ -1,4 +1,4 @@
-const trainerMessageContainer = document.querySelector(".trainer_message");
+import { trainerMessageContainer } from "./trainerSectionHTML";
 function setTrainerMessage(message, isError = false) {
   trainerMessageContainer.textContent = message;
   if (isError) {
@@ -7,4 +7,4 @@ function setTrainerMessage(message, isError = false) {
   trainerMessageContainer.classList.remove("hidden");
 }
 
-export { trainerMessageContainer, setTrainerMessage };
+export default setTrainerMessage;

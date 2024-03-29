@@ -1,4 +1,4 @@
-const filterSortElement = document.querySelector(".filter_sort");
+import { filterSortElement } from "./filterHtmlElements";
 
 const options = [...filterSortElement.querySelectorAll("option")];
 function checkFilterData(chengeInput) {

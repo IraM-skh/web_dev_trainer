@@ -336,12 +336,12 @@ input[type=radio]:checked + label:after {
 }
 
 .category_container {
-  overflow-y: auto;
+  overflow: auto;
   width: 50%;
 }
 
 .subject_container {
-  overflow-y: auto;
+  overflow: auto;
   width: 50%;
 }
 
@@ -471,6 +471,20 @@ li:hover {
 .show_filter_container {
   left: 0;
 }
+.overlay_modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.346);
+  top: 0;
+  left: 0;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.failed_validate {
+  background-color: rgba(255, 75, 120, 0.39);
+}
 body {
   font-size: 1.1rem;
   font-family: "Raleway", sans-serif;
@@ -492,6 +506,18 @@ button {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+}
+
+.popup_window {
+  width: fit-content;
+  position: fixed;
+  padding: 40px 50px;
+  border-radius: 30px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: auto;
 }
 
 /*# sourceMappingURL=/js.00a46daa.css.map */

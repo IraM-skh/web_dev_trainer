@@ -1,8 +1,9 @@
 import { filterSortElement } from "./filterHtmlElements";
-import toggleFilter from "./toggleFilter";
-import { setSubjectOnFilter } from "../htmlElements/subject";
+import { setSubjectOnFilter } from "../subjectsList/subject";
+
 const filters = ["solved", "failed", "unstarted"];
 let sortedBy = "alphabet";
+
 function filterApplying(form) {
   const checkedCheckboxes = [...form.querySelectorAll(".filter_checkbox")]
     .filter((checkboxElement) => checkboxElement.checked)
@@ -11,7 +12,6 @@ function filterApplying(form) {
   setFilters(checkedCheckboxes);
   setSortedBy(sortedBy);
   setSubjectOnFilter(sortedBy);
-  //toggleFilter();
 }
 
 function setFilters(newFilters) {

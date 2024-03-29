@@ -1,9 +1,7 @@
-import { categoryList } from "./category";
+import { categoryList } from "../ajax/parseFromJOSN";
 import { userResults } from "../testData/categoryData";
 import { filters, sortedBy } from "../filter/filterApplying";
-const subjectUl = document
-  .querySelector(".subject_container")
-  .querySelector("ul");
+import { subjectUl } from "./subjectHtmlEl";
 
 function generateSubject(subjectName, result) {
   return `<li class="subject ${result}">${subjectName}</li>`;

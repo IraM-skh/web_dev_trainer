@@ -1,6 +1,6 @@
-import { category } from "../testData/categoryData";
-const categoryList = JSON.parse(category);
-const categoryAll = document.querySelector(".category_all");
+import { categoryAll } from "./categoryHtmlEl";
+import { categoryList } from "../ajax/parseFromJOSN";
+
 function generateCategory(categoryName) {
   return `<li class="category">${categoryName}</li>`;
 }
@@ -14,4 +14,4 @@ function setCategory() {
   });
 }
 
-export { setCategory, categoryList };
+export default setCategory;

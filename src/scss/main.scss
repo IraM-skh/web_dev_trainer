@@ -3,7 +3,7 @@
 @import url(./modules/trainerSection.scss);
 @import url(./modules/categoryAndSubjctList.scss);
 @import url(./modules/filter.scss);
-
+@import url(./modules/login.scss);
 body {
   font-size: 1.1rem;
 
@@ -29,4 +29,17 @@ button {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+}
+
+.popup_window {
+  width: fit-content;
+  position: fixed;
+  padding: 40px 50px;
+  border-radius: 30px;
+  background-color: white;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: auto;
 }

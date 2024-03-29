@@ -4,28 +4,21 @@ import {
   args,
   outputVariant,
 } from "../testData/categoryData";
-import { categoryList } from "./category";
+import { categoryList } from "../ajax/parseFromJOSN";
 import cleanTrainerMessage from "./cleanTrainerMessage";
+import { trainerContainer } from "./trainerSectionHTML";
+import { taskForm } from "./trainerSectionHTML";
 const questionList = JSON.parse(question);
 const subjectList = JSON.parse(subject);
 const argsList = JSON.parse(args);
 const outputVariantList = JSON.parse(outputVariant);
 const chengeData = ["Да", "Нет"];
-const taskForm = document.querySelector(".task_form");
-//question.question и question.ansversType question.questionName;
-//subject.description и subject.subjectName
-//args просто массив с аргументами
-//outputVariant.id outputVariant.type
-//categoryList.output_ids categoryList.subjectsName
 
 function setQestion(descriptionStr) {
   return `<h2>${descriptionStr}</h2>`; // questionList.question
 }
 
 function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
-  //value- subjectList.description/args/chengeData/outputVariantList.type
-  //inputType - questionList.ansversType
-  //questionName - questionList.questionName
   return `<input
               name="${questionName}" 
               type="${inputType}"
@@ -82,6 +75,11 @@ function setAllQA(targetedSubject) {
       });
   });
   taskForm.insertAdjacentHTML("beforeend", sendAnswersBtn);
+  trainerContainer.scrollBy({
+    left: 0,
+    top: -trainerContainer.offsetHeight,
+    behavior: "smooth",
+  });
 }
 
-export { setAllQA, taskForm };
+export default setAllQA;

@@ -1,5 +1,5 @@
-const chooseTrainerMessage = document.querySelector(".choose_trainer_message");
-const taskForm = document.querySelector(".task_form");
+import { chooseTrainerMessage, taskForm } from "./trainerSectionHTML";
+
 function showTasks() {
   chooseTrainerMessage.classList.add("hidden");
   taskForm.classList.remove("hidden");

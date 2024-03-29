@@ -206,6 +206,7 @@ const userResults = {
   solved: ["Number()", "push", "pop", "keys"],
   failed: ["toFixed", "values"],
 };
+
 export {
   args,
   outputVariant,

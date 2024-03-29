@@ -28,6 +28,8 @@
         <button class="nav_btn">CSS</button>
         <button class="nav_btn">React</button>
         <button class="nav_btn">Git</button>
+        <button class="nav_btn show_popup_login_btn">Войти</button>
+        <button class="nav_btn show_popup_profile_btn hidden">Профиль</button>
       </nav>
     </header>
     <main class="main_container">
@@ -70,9 +72,7 @@
             </ul>
           </div>
           <div class="subject_container">
-            <ul>
-              <!-- <li class="subject">fdsfds</li> -->
-            </ul>
+            <ul></ul>
           </div>
         </div>
       </div>
@@ -82,6 +82,37 @@
         <p class="trainer_message hidden"></p>
       </div>
     </main>
+    <div class="overlay_modal hidden">
+      <div class="login_modal_window hidden popup_window">
+        <form class="login_form_container">
+          <input class="login_input" placeholder="Введите логин">
+          <p class="explanatory_message">
+            Логин может сотояь из букв и цифр. Длина логина от 4 до 15 символов.
+          </p>
+          <input class="password_input" placeholder="Введите пароль">
+          <p class="explanatory_message">Длина пароля от 6 до 30 символов.</p>
+          <input class="repeat_password hidden" placeholder="Подтвердите пароль">
+          <p class="login_error_message error_message hidden"></p>
+          <button class="need_to_registration_btn">У меня нет аккаунта</button>
+          <input type="checkbox" id="remember_login" value="remember" class="filter_checkbox" checked=""><label for="remember_login">Запомнить меня</label>
+          <button class="login_btn" type="submit">Войти</button>
+          <button class="registration_btn hidden" type="submit">
+            Регистрация
+          </button>
+        </form>
+      </div>
+      <div class="profile_modal_window hidden popup_window">
+        <p><span>Логин: </span><span class="user_login"></span></p>
+        <p>Выберите категорию:</p>
+        <select class="statistic_category_list"></select>
+        <p>
+          <span>Успешно пройденные: </span><span class="user_solved"></span>
+        </p>
+        <p><span>Проваленные: </span><span class="user_failed"></span></p>
+        <p><span>Неначатые: </span><span class="user_unstarted"></span></p>
+        <button class="exit_profile_btn">Выйти из профиля</button>
+      </div>
+    </div>
     <footer></footer>
   </body>
 </html>

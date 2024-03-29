@@ -23,11 +23,11 @@ $red-color: rgb(255, 0, 106);
 }
 
 .category_container {
-  overflow-y: auto;
+  overflow: auto;
   width: 50%;
 }
 .subject_container {
-  overflow-y: auto;
+  overflow: auto;
   width: 50%;
 }
 li {
