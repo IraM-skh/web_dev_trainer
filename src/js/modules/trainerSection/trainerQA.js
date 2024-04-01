@@ -15,7 +15,7 @@ const outputVariantList = JSON.parse(outputVariant);
 const chengeData = ["Да", "Нет"];
 
 function setQestion(descriptionStr) {
-  return `<h2>${descriptionStr}</h2>`; // questionList.question
+  return `<h2>${descriptionStr}</h2>`;
 }
 
 function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
@@ -26,6 +26,9 @@ function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
               id="${idQestion}${idAnswer}" /><label for="${idQestion}${idAnswer}">${value}</label>`;
 }
 
+function exerciseContainer(question) {
+  return `<div class = "exercise_container" id ="${question}"></div>`;
+}
 const sendAnswersBtn = `<div class = "btns_qa_container"><button class="send_answers_btn submit_btn" type="submit">Проверить</button></div>`;
 
 function getDescription(targetedSubject) {
@@ -58,11 +61,19 @@ function setAllQA(targetedSubject) {
     { type: "outputVariant", values: getOutputVariant(targetedSubject) },
   ];
   questionList.forEach((question, questionIndex) => {
-    taskForm.insertAdjacentHTML("beforeend", setQestion(question.question));
+    taskForm.insertAdjacentHTML(
+      "beforeend",
+      exerciseContainer("EC" + questionIndex)
+    );
+    const exeContainerElement = document.querySelector(`#EC${questionIndex}`);
+    exeContainerElement.insertAdjacentHTML(
+      "beforeend",
+      setQestion(question.question)
+    );
     allAnswers
       .find((answer) => answer.type === question.questionName)
       .values.forEach((value, answerIndex) => {
-        taskForm.insertAdjacentHTML(
+        exeContainerElement.insertAdjacentHTML(
           "beforeend",
           setAnswer(
             value,

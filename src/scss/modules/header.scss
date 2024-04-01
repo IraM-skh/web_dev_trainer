@@ -1,3 +1,47 @@
+$profile_icon_color_standard: #d2d2d2;
+$standard-border-colrgb: rgb(54, 194, 189);
+
 header {
-  text-align: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  h1 {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    font-family: "Bitter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .show_popup_profile_btn,
+  .show_popup_login_btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.3rem;
+    border: 2px solid $profile_icon_color_standard;
+    transition: all 0.5s;
+    margin: 0 0.5rem;
+  }
+  .show_popup_profile_btn:hover,
+  .show_popup_login_btn:hover {
+    border: 2px solid $standard-border-colrgb;
+    box-shadow: 0 0 0.5rem $standard-border-colrgb;
+
+    .profile_icon {
+      path {
+        fill: $standard-border-colrgb;
+      }
+    }
+  }
+
+  .profile_icon {
+    width: 100%;
+    path {
+      fill: $profile_icon_color_standard;
+      transition: all 0.5s;
+    }
+  }
 }

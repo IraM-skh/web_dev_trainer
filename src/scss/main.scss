@@ -3,18 +3,16 @@
 @import url(./modules/trainerSection.scss);
 @import url(./modules/categoryAndSubjctList.scss);
 @import url(./modules/filter.scss);
-@import url(./modules/login.scss);
+@import url(./modules/loginAndProfile.scss);
+
+// linear-gradient(90deg, rgba(45, 194, 206, 0.1) 0%, rgba(45, 192, 102, 0.1) 100%);
 body {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-
-  // font-family: "Roboto", sans-serif;
-  // font-weight: 300;
-  // font-style: normal;
 }
 .selected_section_btn {
   color: red;
@@ -25,6 +23,7 @@ body {
 }
 
 button {
+  font-size: 1.05rem;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -37,9 +36,64 @@ button {
   padding: 40px 50px;
   border-radius: 30px;
   background-color: white;
-
+  text-align: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(54, 194, 189);
+  border-radius: 1rem;
+}
+
+select {
+  display: block;
+  font-size: 1.07rem;
+
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  color: #444; //поменять
+  line-height: 1.3rem;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #a3a3a363;
+  border-radius: 0.5rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2336c2bd%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  transition: all 0.5s;
+}
+select::-ms-expand {
+  display: none;
+}
+select:hover {
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+select:focus {
+  border-color: rgb(54, 194, 189);
+  outline: none;
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+select option {
+  font-weight: normal;
 }

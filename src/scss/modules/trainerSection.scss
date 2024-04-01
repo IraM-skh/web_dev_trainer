@@ -3,7 +3,7 @@ $choosen-bg-color: #d8d8d8; // в лист
 $standard-bg-color: #f5f5f5; //в лист
 $standard-border-colrgb: rgb(54, 194, 189); // в лист
 $red-color: rgb(255, 0, 106);
-$main-bg-color: white;
+
 $border-indent: 5%;
 
 main {
@@ -12,19 +12,34 @@ main {
   overflow-y: hidden;
   max-width: 1200px;
   margin: 1rem auto 0 auto;
+  background: url(../../assets/bg/background63.png);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px #5052543a;
+  padding: 0.7rem;
+  padding-left: 0;
 }
 
 .filet_and_subject_container {
   position: relative;
   width: 30%;
 }
-
+.exercise_container {
+  background-color: #fff;
+  padding: 0.7rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.4rem rgba(4, 178, 169, 0.317);
+}
+.exercise_container:first-child {
+  margin-top: 0.4rem;
+}
 .trainer_container {
   position: relative;
   width: 66%;
   box-sizing: border-box;
-  padding: 0 1rem;
-  background-color: #ffffff;
+  padding: 0 0.7rem;
+  background: url(../../assets/bg/background63.png);
+
   overflow: auto;
 }
 .choose_trainer_message {
@@ -34,11 +49,23 @@ main {
   transform: translate(-50%);
 }
 .submit_btn,
-.next_btn {
+.next_btn,
+.login_btn,
+.exit_profile_btn,
+.registration_btn {
   display: block;
-  background-color: $standard-border-colrgb;
   border-radius: 0.5rem;
   padding: 0.7rem;
+  background: linear-gradient(90deg, rgb(197, 247, 251), rgb(198, 252, 221));
+  border: 2px solid rgba(54, 194, 189, 0.541);
+  transition: box-shadow 0.5s;
+}
+.submit_btn:hover,
+.next_btn:hover,
+.login_btn:hover,
+.exit_profile_btn:hover,
+.registration_btn:hover {
+  box-shadow: 0 0 10px 0px $standard-border-colrgb;
 }
 
 .btns_qa_container {
@@ -49,21 +76,12 @@ main {
 
 .task_form {
   h2 {
-    margin-top: 1rem;
     margin-bottom: 0.5rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid $standard-border-colrgb;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-family: "Bitter", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-  }
-
-  h2:first-of-type {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
   }
 
   label {
@@ -99,15 +117,25 @@ input[type="radio"]:not(:checked) + label:before {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #a3a3a3;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #a3a3a363;
   background-color: #ffffff;
+  transition: border 0.5s;
+}
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+  border-color: $standard-border-colrgb;
+}
+
+input[type="checkbox"]:hover + label:before,
+input[type="radio"]:hover + label:before {
+  border-color: $standard-border-colrgb;
 }
 
 input[type="checkbox"]:checked + label:before,
 input[type="checkbox"]:not(:checked) + label:before {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 input[type="radio"]:checked + label:before,

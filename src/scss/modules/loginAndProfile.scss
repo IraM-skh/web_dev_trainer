@@ -1,0 +1,103 @@
+.overlay_modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.346);
+  top: 0;
+  left: 0;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.failed_validate {
+  background-color: rgba(255, 75, 120, 0.39);
+}
+
+.login_form_container {
+  font-size: 1rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  input[type="text"] {
+    font-size: 1rem;
+    font-family: "Bitter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    padding: 0.7rem;
+    border: 2px solid#a3a3a363;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.5s;
+  }
+
+  input[type="text"]:hover {
+    box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+  }
+  input[type="text"]:focus {
+    border-color: rgb(54, 194, 189);
+    outline: none;
+    box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+  }
+  input:not(input:first-child) {
+    margin-top: 1rem;
+  }
+  label {
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+    transition: text-shadow 0.5s;
+  }
+  label:hover {
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+    text-shadow: 0 0 10px rgb(54, 194, 189);
+  }
+
+  .explanatory_message {
+    color: #a3a3a3;
+  }
+  .need_to_registration_btn {
+    transition: all 0.5s;
+  }
+  .need_to_registration_btn:hover {
+    text-shadow: 0 0 10px rgb(54, 194, 189);
+  }
+}
+
+.overlay_modal .profile_modal_window {
+  font-size: 1.2rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  text-align: start;
+  p:not(p:first-child) {
+    margin-top: 0.7rem;
+  }
+  select {
+    margin-top: 0.7rem;
+  }
+  .user_solved {
+    color: rgb(3, 168, 151);
+  }
+  .user_failed {
+    color: rgb(255, 0, 106);
+  }
+  .exit_profile_btn {
+    background: linear-gradient(0deg, rgb(231, 231, 231), rgb(246, 250, 248));
+    border-color: #a3a3a363;
+    transition: all 0.5s;
+  }
+  .exit_profile_btn:hover {
+    box-shadow: 0 0 10px rgb(255, 0, 106);
+    border-color: rgb(255, 0, 106);
+  }
+}
+
+.login_btn,
+.exit_profile_btn,
+.registration_btn {
+  margin: 0.7rem auto 0 auto;
+}

@@ -3,8 +3,13 @@ $standard-border-colrgb: rgb(54, 194, 189);
 $choosen-border-color: #333333;
 $choosen-bg-color: #d8d8d8;
 $red-color: rgb(255, 0, 106);
+// linear-gradient(
+//     90deg,
+//     rgba(45, 194, 206, 0.1) 0%,
+//     rgba(45, 192, 102, 0.1) 100%
+//   )
 .solved {
-  color: rgb(0, 159, 159);
+  color: rgb(3, 168, 151);
 }
 
 .failed {
@@ -20,51 +25,46 @@ $red-color: rgb(255, 0, 106);
   left: 0;
   top: 0;
   transition: all 0.2s linear;
+  justify-content: space-between;
 }
 
 .category_container {
   overflow: auto;
+  box-sizing: border-box;
   width: 50%;
+  padding-right: 0.3rem;
+  border-right: 6px double #c8c8c88e;
 }
 .subject_container {
   overflow: auto;
+
+  box-sizing: border-box;
   width: 50%;
+  padding: 0 0.3rem;
 }
 li {
-  padding: 0.5rem;
-  background-color: $standard-bg-color;
-  border-bottom: 1px solid $standard-border-colrgb;
-  transition: background-color 1s;
+  padding: 0.4rem 0.7rem;
+  margin-top: 0.2rem;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  // border-bottom: 1px solid $standard-border-colrgb;
+  transition: background-color 0.8s;
   cursor: pointer;
-  font-size: 1.05rem;
-}
-
-li:hover {
-  background-color: $standard-border-colrgb;
+  font-size: 1.1rem;
 }
 
 .category_selected {
-  border-left: 5px solid $choosen-border-color;
+  border-left: 5px solid $standard-border-colrgb;
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
-  background-color: $choosen-bg-color;
+  background: linear-gradient(90deg, rgb(211, 242, 244), rgb(212, 243, 225));
+  box-shadow: 0 0 3px #4aff3a50;
 }
 
 .subject_selected {
-  background-color: $choosen-bg-color;
+  background: linear-gradient(90deg, rgb(211, 242, 244), rgb(212, 243, 225));
+  box-shadow: 0 0 3px #4aff3a50;
 }
-
-::-webkit-scrollbar {
-  width: 5px; /* Ширина всего элемента навигации */
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent; /* Цвет дорожки */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: $choosen-border-color; /* Цвет бегунка */
-  border-radius: 1rem; /* Округление бегунка */
-  //   border: 1px solid #ff0000; /* Оформление границ бегунка */
+li:hover {
+  background-color: rgba(54, 194, 189, 0.356);
 }

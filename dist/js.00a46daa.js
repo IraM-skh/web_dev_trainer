@@ -573,10 +573,13 @@ var argsList = JSON.parse(_categoryData.args);
 var outputVariantList = JSON.parse(_categoryData.outputVariant);
 var chengeData = ["Да", "Нет"];
 function setQestion(descriptionStr) {
-  return "<h2>".concat(descriptionStr, "</h2>"); // questionList.question
+  return "<h2>".concat(descriptionStr, "</h2>");
 }
 function setAnswer(value, inputType, questionName, idQestion, idAnswer) {
   return "<input\n              name=\"".concat(questionName, "\" \n              type=\"").concat(inputType, "\"\n              value=\"").concat(value, "\"\n              id=\"").concat(idQestion).concat(idAnswer, "\" /><label for=\"").concat(idQestion).concat(idAnswer, "\">").concat(value, "</label>");
+}
+function exerciseContainer(question) {
+  return "<div class = \"exercise_container\" id =\"".concat(question, "\"></div>");
 }
 var sendAnswersBtn = "<div class = \"btns_qa_container\"><button class=\"send_answers_btn submit_btn\" type=\"submit\">\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C</button></div>";
 function getDescription(targetedSubject) {
@@ -613,11 +616,13 @@ function setAllQA(targetedSubject) {
     values: getOutputVariant(targetedSubject)
   }];
   questionList.forEach(function (question, questionIndex) {
-    _trainerSectionHTML.taskForm.insertAdjacentHTML("beforeend", setQestion(question.question));
+    _trainerSectionHTML.taskForm.insertAdjacentHTML("beforeend", exerciseContainer("EC" + questionIndex));
+    var exeContainerElement = document.querySelector("#EC".concat(questionIndex));
+    exeContainerElement.insertAdjacentHTML("beforeend", setQestion(question.question));
     allAnswers.find(function (answer) {
       return answer.type === question.questionName;
     }).values.forEach(function (value, answerIndex) {
-      _trainerSectionHTML.taskForm.insertAdjacentHTML("beforeend", setAnswer(value, question.ansversType, question.questionName, questionIndex, answerIndex));
+      exeContainerElement.insertAdjacentHTML("beforeend", setAnswer(value, question.ansversType, question.questionName, questionIndex, answerIndex));
     });
   });
   _trainerSectionHTML.taskForm.insertAdjacentHTML("beforeend", sendAnswersBtn);
@@ -793,7 +798,7 @@ module.hot.accept(reloadCSS);
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/categoryAndSubjctList.scss":[function(require,module,exports) {
+},{"./..\\..\\assets\\bg\\background63.png":[["background63.8223dde7.png","assets/bg/background63.png"],"assets/bg/background63.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/categoryAndSubjctList.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
@@ -801,7 +806,7 @@ module.hot.accept(reloadCSS);
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/login.scss":[function(require,module,exports) {
+},{"./..\\..\\assets\\bg\\background63.png":[["background63.8223dde7.png","assets/bg/background63.png"],"assets/bg/background63.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"scss/modules/loginAndProfile.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
@@ -809,7 +814,7 @@ module.hot.accept(reloadCSS);
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./modules/reset.scss":"scss/modules/reset.scss","./modules/header.scss":"scss/modules/header.scss","./modules/trainerSection.scss":"scss/modules/trainerSection.scss","./modules/categoryAndSubjctList.scss":"scss/modules/categoryAndSubjctList.scss","./modules/filter.scss":"scss/modules/filter.scss","./modules/login.scss":"scss/modules/login.scss","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/modules/login/loginHtmlEl.js":[function(require,module,exports) {
+},{"./modules/reset.scss":"scss/modules/reset.scss","./modules/header.scss":"scss/modules/header.scss","./modules/trainerSection.scss":"scss/modules/trainerSection.scss","./modules/categoryAndSubjctList.scss":"scss/modules/categoryAndSubjctList.scss","./modules/filter.scss":"scss/modules/filter.scss","./modules/loginAndProfile.scss":"scss/modules/loginAndProfile.scss","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/modules/login/loginHtmlEl.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -967,12 +972,12 @@ function changeNavBtnStyle() {
   var navBtns = _toConsumableArray(document.querySelectorAll(".nav_btn"));
   var nav = document.querySelector("nav");
   nav.addEventListener("click", function (event) {
-    if (event.target.classList.contains("show_popup_login_btn")) {
+    if (event.target.classList.contains("show_popup_login_btn") || event.target.classList.contains("profile_icon_login")) {
       (0, _changeOpenPopup.changeOpenPopup)("login_modal_window");
       (0, _togglePopupDisplay.default)();
       return;
     }
-    if (event.target.classList.contains("show_popup_profile_btn")) {
+    if (event.target.classList.contains("show_popup_profile_btn") || event.target.classList.contains("profile_icon_logined")) {
       (0, _changeOpenPopup.changeOpenPopup)("profile_modal_window");
       (0, _togglePopupDisplay.default)();
       return;
@@ -983,7 +988,6 @@ function changeNavBtnStyle() {
       });
       event.target.classList.add("selected_section_btn");
     }
-    return;
   });
 }
 var _default = exports.default = changeNavBtnStyle;
@@ -1490,7 +1494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53884" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52060" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

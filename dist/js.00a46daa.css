@@ -144,7 +144,44 @@ button {
   cursor: pointer;
 }
 header {
-  text-align: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+}
+header h1 {
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+header .show_popup_profile_btn,
+header .show_popup_login_btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2.3rem;
+  border: 2px solid #d2d2d2;
+  transition: all 0.5s;
+  margin: 0 0.5rem;
+}
+header .show_popup_profile_btn:hover,
+header .show_popup_login_btn:hover {
+  border: 2px solid rgb(54, 194, 189);
+  box-shadow: 0 0 0.5rem rgb(54, 194, 189);
+}
+header .show_popup_profile_btn:hover .profile_icon path,
+header .show_popup_login_btn:hover .profile_icon path {
+  fill: rgb(54, 194, 189);
+}
+header .profile_icon {
+  width: 100%;
+}
+header .profile_icon path {
+  fill: #d2d2d2;
+  transition: all 0.5s;
 }
 main {
   display: flex;
@@ -152,6 +189,11 @@ main {
   overflow-y: hidden;
   max-width: 1200px;
   margin: 1rem auto 0 auto;
+  background: url(/background63.8223dde7.png);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px rgba(80, 82, 84, 0.2274509804);
+  padding: 0.7rem;
+  padding-left: 0;
 }
 
 .filet_and_subject_container {
@@ -159,12 +201,24 @@ main {
   width: 30%;
 }
 
+.exercise_container {
+  background-color: #fff;
+  padding: 0.7rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.4rem rgba(4, 178, 169, 0.317);
+}
+
+.exercise_container:first-child {
+  margin-top: 0.4rem;
+}
+
 .trainer_container {
   position: relative;
   width: 66%;
   box-sizing: border-box;
-  padding: 0 1rem;
-  background-color: #ffffff;
+  padding: 0 0.7rem;
+  background: url(/background63.8223dde7.png);
   overflow: auto;
 }
 
@@ -176,11 +230,24 @@ main {
 }
 
 .submit_btn,
-.next_btn {
+.next_btn,
+.login_btn,
+.exit_profile_btn,
+.registration_btn {
   display: block;
-  background-color: rgb(54, 194, 189);
   border-radius: 0.5rem;
   padding: 0.7rem;
+  background: linear-gradient(90deg, rgb(197, 247, 251), rgb(198, 252, 221));
+  border: 2px solid rgba(54, 194, 189, 0.541);
+  transition: box-shadow 0.5s;
+}
+
+.submit_btn:hover,
+.next_btn:hover,
+.login_btn:hover,
+.exit_profile_btn:hover,
+.registration_btn:hover {
+  box-shadow: 0 0 10px 0px rgb(54, 194, 189);
 }
 
 .btns_qa_container {
@@ -190,20 +257,12 @@ main {
 }
 
 .task_form h2 {
-  margin-top: 1rem;
   margin-bottom: 0.5rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid rgb(54, 194, 189);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-family: "Bitter", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
-.task_form h2:first-of-type {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
 }
 .task_form label {
   padding-right: 1.5rem;
@@ -237,15 +296,26 @@ input[type=radio]:not(:checked) + label:before {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #a3a3a3;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(163, 163, 163, 0.3882352941);
   background-color: #ffffff;
+  transition: border 0.5s;
+}
+
+input[type=checkbox]:checked + label:before,
+input[type=radio]:checked + label:before {
+  border-color: rgb(54, 194, 189);
+}
+
+input[type=checkbox]:hover + label:before,
+input[type=radio]:hover + label:before {
+  border-color: rgb(54, 194, 189);
 }
 
 input[type=checkbox]:checked + label:before,
 input[type=checkbox]:not(:checked) + label:before {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 input[type=radio]:checked + label:before,
@@ -316,9 +386,8 @@ input[type=radio]:checked + label:after {
   font-size: 1.2rem;
   font-weight: 500;
 }
-@charset "UTF-8";
 .solved {
-  color: rgb(0, 159, 159);
+  color: rgb(3, 168, 151);
 }
 
 .failed {
@@ -333,57 +402,52 @@ input[type=radio]:checked + label:after {
   left: 0;
   top: 0;
   transition: all 0.2s linear;
+  justify-content: space-between;
 }
 
 .category_container {
   overflow: auto;
+  box-sizing: border-box;
   width: 50%;
+  padding-right: 0.3rem;
+  border-right: 6px double rgba(200, 200, 200, 0.5568627451);
 }
 
 .subject_container {
   overflow: auto;
+  box-sizing: border-box;
   width: 50%;
+  padding: 0 0.3rem;
 }
 
 li {
-  padding: 0.5rem;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid rgb(54, 194, 189);
-  transition: background-color 1s;
+  padding: 0.4rem 0.7rem;
+  margin-top: 0.2rem;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  transition: background-color 0.8s;
   cursor: pointer;
-  font-size: 1.05rem;
-}
-
-li:hover {
-  background-color: rgb(54, 194, 189);
+  font-size: 1.1rem;
 }
 
 .category_selected {
-  border-left: 5px solid #333333;
+  border-left: 5px solid rgb(54, 194, 189);
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
-  background-color: #d8d8d8;
+  background: linear-gradient(90deg, rgb(211, 242, 244), rgb(212, 243, 225));
+  box-shadow: 0 0 3px rgba(74, 255, 58, 0.3137254902);
 }
 
 .subject_selected {
-  background-color: #d8d8d8;
+  background: linear-gradient(90deg, rgb(211, 242, 244), rgb(212, 243, 225));
+  box-shadow: 0 0 3px rgba(74, 255, 58, 0.3137254902);
 }
 
-::-webkit-scrollbar {
-  width: 5px; /* Ширина всего элемента навигации */
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent; /* Цвет дорожки */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #333333; /* Цвет бегунка */
-  border-radius: 1rem; /* Округление бегунка */
+li:hover {
+  background-color: rgba(54, 194, 189, 0.356);
 }
 .filter_icon_container {
-  background-color: #fff;
+  background: url(/background63.8223dde7.png);
   width: 4%;
   z-index: 3;
 }
@@ -406,8 +470,9 @@ li:hover {
   flex-direction: column;
   gap: 0.7rem;
   align-items: flex-start;
-  padding: 0 1rem;
-  background-color: #fff;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
   position: absolute;
   left: -100%;
   transition: all 0.2s linear;
@@ -419,49 +484,6 @@ li:hover {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
-
-.filter_sort {
-  display: block;
-  font-size: 1.07rem;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  color: #444;
-  line-height: 1.3rem;
-  padding: 0.6em 1.4em 0.5em 0.8em;
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #a3a3a3;
-  border-radius: 0.5rem;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2336c2bd%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-  background-repeat: no-repeat, repeat;
-  background-position: right 0.7em top 50%, 0 0;
-  background-size: 0.65em auto, 100%;
-}
-
-.filter_sort::-ms-expand {
-  display: none;
-}
-
-.filter_sort:hover {
-  border-color: #888;
-}
-
-.filter_sort:focus {
-  border-color: transparent;
-  box-shadow: 0 0 1px 2px rgb(54, 194, 189);
-  box-shadow: 0 0 0 2px -moz-mac-focusring;
-  outline: none;
-}
-
-.filter_sort option {
-  font-weight: normal;
 }
 
 .setFilter_btn {
@@ -485,8 +507,94 @@ li:hover {
 .failed_validate {
   background-color: rgba(255, 75, 120, 0.39);
 }
+
+.login_form_container {
+  font-size: 1rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.login_form_container input[type=text] {
+  font-size: 1rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0.7rem;
+  border: 2px solid rgba(163, 163, 163, 0.3882352941);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.5s;
+}
+.login_form_container input[type=text]:hover {
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+.login_form_container input[type=text]:focus {
+  border-color: rgb(54, 194, 189);
+  outline: none;
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+.login_form_container input:not(input:first-child) {
+  margin-top: 1rem;
+}
+.login_form_container label {
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+  transition: text-shadow 0.5s;
+}
+.login_form_container label:hover {
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+  text-shadow: 0 0 10px rgb(54, 194, 189);
+}
+.login_form_container .explanatory_message {
+  color: #a3a3a3;
+}
+.login_form_container .need_to_registration_btn {
+  transition: all 0.5s;
+}
+.login_form_container .need_to_registration_btn:hover {
+  text-shadow: 0 0 10px rgb(54, 194, 189);
+}
+
+.overlay_modal .profile_modal_window {
+  font-size: 1.2rem;
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  text-align: start;
+}
+.overlay_modal .profile_modal_window p:not(p:first-child) {
+  margin-top: 0.7rem;
+}
+.overlay_modal .profile_modal_window select {
+  margin-top: 0.7rem;
+}
+.overlay_modal .profile_modal_window .user_solved {
+  color: rgb(3, 168, 151);
+}
+.overlay_modal .profile_modal_window .user_failed {
+  color: rgb(255, 0, 106);
+}
+.overlay_modal .profile_modal_window .exit_profile_btn {
+  background: linear-gradient(0deg, rgb(231, 231, 231), rgb(246, 250, 248));
+  border-color: rgba(163, 163, 163, 0.3882352941);
+  transition: all 0.5s;
+}
+.overlay_modal .profile_modal_window .exit_profile_btn:hover {
+  box-shadow: 0 0 10px rgb(255, 0, 106);
+  border-color: rgb(255, 0, 106);
+}
+
+.login_btn,
+.exit_profile_btn,
+.registration_btn {
+  margin: 0.7rem auto 0 auto;
+}
 body {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -502,6 +610,7 @@ body {
 }
 
 button {
+  font-size: 1.05rem;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -514,10 +623,68 @@ button {
   padding: 40px 50px;
   border-radius: 30px;
   background-color: white;
+  text-align: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(54, 194, 189);
+  border-radius: 1rem;
+}
+
+select {
+  display: block;
+  font-size: 1.07rem;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #444;
+  line-height: 1.3rem;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid rgba(163, 163, 163, 0.3882352941);
+  border-radius: 0.5rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2336c2bd%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  transition: all 0.5s;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:hover {
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+
+select:focus {
+  border-color: rgb(54, 194, 189);
+  outline: none;
+  box-shadow: 0 0 10px 0px rgba(54, 194, 189, 0.42);
+}
+
+select option {
+  font-weight: normal;
 }
 
 /*# sourceMappingURL=/js.00a46daa.css.map */

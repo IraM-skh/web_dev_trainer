@@ -18,18 +18,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/js.00a46daa.css"></head>
   <body>
     <header class="main_container">
       <h1>Тренажер по веб-разработке</h1>
       <nav>
-        <button class="nav_btn selected_section_btn">JavaScript</button>
-        <button class="nav_btn">HTML</button>
-        <button class="nav_btn">CSS</button>
-        <button class="nav_btn">React</button>
-        <button class="nav_btn">Git</button>
-        <button class="nav_btn show_popup_login_btn">Войти</button>
-        <button class="nav_btn show_popup_profile_btn hidden">Профиль</button>
+        <button class="nav_btn selected_section_btn hidden">JavaScript</button>
+        <button class="nav_btn hidden">HTML</button>
+        <button class="nav_btn hidden">CSS</button>
+        <button class="nav_btn hidden">React</button>
+        <button class="nav_btn hidden">Git</button>
+
+        <button class="nav_btn show_popup_login_btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512" class="profile_icon profile_icon_login">
+            <path class="profile_icon_login" d="m448 362.7l-117.3-21.3C320 320 320 310.7 320 298.7c10.7-10.7 32-21.3 32-32c10.7-32 10.7-53.3 10.7-53.3c5.5-8 21.3-21.3 21.3-42.7s-21.3-42.7-21.3-53.3C362.7 32 319.2 0 256 0c-60.5 0-106.7 32-106.7 117.3c0 10.7-21.3 32-21.3 53.3s15.2 35.4 21.3 42.7c0 0 0 21.3 10.7 53.3c0 10.7 21.3 21.3 32 32c0 10.7 0 21.3-10.7 42.7L64 362.7C21.3 373.3 0 448 0 512h512c0-64-21.3-138.7-64-149.3"></path>
+          </svg>
+        </button>
+
+        <button class="nav_btn show_popup_profile_btn hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512" class="profile_icon profile_icon_logined">
+            <path class="profile_icon_logined" d="m448 362.7l-117.3-21.3C320 320 320 310.7 320 298.7c10.7-10.7 32-21.3 32-32c10.7-32 10.7-53.3 10.7-53.3c5.5-8 21.3-21.3 21.3-42.7s-21.3-42.7-21.3-53.3C362.7 32 319.2 0 256 0c-60.5 0-106.7 32-106.7 117.3c0 10.7-21.3 32-21.3 53.3s15.2 35.4 21.3 42.7c0 0 0 21.3 10.7 53.3c0 10.7 21.3 21.3 32 32c0 10.7 0 21.3-10.7 42.7L64 362.7C21.3 373.3 0 448 0 512h512c0-64-21.3-138.7-64-149.3"></path>
+          </svg>
+        </button>
       </nav>
     </header>
     <main class="main_container">
@@ -85,16 +103,19 @@
     <div class="overlay_modal hidden">
       <div class="login_modal_window hidden popup_window">
         <form class="login_form_container">
-          <input class="login_input" placeholder="Введите логин">
+          <input class="login_input" placeholder="Введите логин" type="text">
           <p class="explanatory_message">
-            Логин может сотояь из букв и цифр. Длина логина от 4 до 15 символов.
+            Логин может сотояь из букв и цифр. <br>Длина логина от 4 до 15
+            символов.
           </p>
-          <input class="password_input" placeholder="Введите пароль">
+          <input class="password_input" placeholder="Введите пароль" type="text">
           <p class="explanatory_message">Длина пароля от 6 до 30 символов.</p>
-          <input class="repeat_password hidden" placeholder="Подтвердите пароль">
+          <input class="repeat_password hidden" placeholder="Подтвердите пароль" type="text">
           <p class="login_error_message error_message hidden"></p>
-          <button class="need_to_registration_btn">У меня нет аккаунта</button>
+
           <input type="checkbox" id="remember_login" value="remember" class="filter_checkbox" checked=""><label for="remember_login">Запомнить меня</label>
+          <br>
+          <button class="need_to_registration_btn">У меня нет аккаунта</button>
           <button class="login_btn" type="submit">Войти</button>
           <button class="registration_btn hidden" type="submit">
             Регистрация
