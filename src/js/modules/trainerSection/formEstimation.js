@@ -1,6 +1,9 @@
-import { correctAnsvers } from "../testData/categoryData";
+// import { correctAnsvers } from "../testData/categoryData";
+import getCorrectAnsversQuery from "../ajax/getCorrectAnsversQuery";
 
-function formEstimation(checkedInputsArray) {
+async function formEstimation(checkedInputsArray) {
+  const response = await getCorrectAnsversQuery();
+  const correctAnsvers = await response.json();
   const inputCheckboxes = checkedInputsArray.filter(
     (input) => input.type === "checkbox"
   );

@@ -1,18 +1,22 @@
-import {
-  question,
-  subject,
-  args,
-  outputVariant,
-} from "../testData/categoryData";
-import { categoryList } from "../ajax/parseFromJOSN";
+// import {
+//   question,
+//   subject,
+//   args,
+//   outputVariant,
+// } from "../testData/categoryData";
+// import { categoryList } from "../ajax/parseFromJOSN";
+
 import cleanTrainerMessage from "./cleanTrainerMessage";
 import { trainerContainer } from "./trainerSectionHTML";
 import { taskForm } from "./trainerSectionHTML";
-const questionList = JSON.parse(question);
-const subjectList = JSON.parse(subject);
-const argsList = JSON.parse(args);
-const outputVariantList = JSON.parse(outputVariant);
-const chengeData = ["Да", "Нет"];
+
+import getCategorys from "../dataFromAjaxStatic/getCategorys";
+import getOutputVariants from "../dataFromAjaxStatic/getOutputVariants";
+import getQuestions from "../dataFromAjaxStatic/getQuestions";
+import getSubjects from "../dataFromAjaxStatic/getSubjects";
+import getArgs from "../dataFromAjaxStatic/getArgs";
+
+const changeData = ["Да", "Нет"];
 
 function setQestion(descriptionStr) {
   return `<h2>${descriptionStr}</h2>`;
@@ -31,36 +35,51 @@ function exerciseContainer(question) {
 }
 const sendAnswersBtn = `<div class = "btns_qa_container"><button class="send_answers_btn submit_btn" type="submit">Проверить</button></div>`;
 
-function getDescription(targetedSubject) {
-  return subjectList.find(
-    (subject) => subject.subjectName === targetedSubject.textContent
-  ).description;
+async function getDescription(targetedSubject) {
+  const subject = await getSubjects();
+  return subject.find((subject) => {
+    return subject.subjectName === targetedSubject.textContent;
+  }).description;
 }
 
-function getOutputVariant(targetedSubject) {
-  return categoryList
-    .find((category) =>
-      category.subjectsName.includes(targetedSubject.textContent)
-    )
+async function getOutputVariantAsync(targetedSubject) {
+  const outputVariant = await getOutputVariants();
+  const categorys = await getCategorys();
+  return categorys
+    .find((category) => {
+      return category.subjectsName.includes(targetedSubject.textContent);
+    })
     .outputIds.map(
       (id) =>
-        outputVariantList.find((outputVariant) => outputVariant.id === id).type
+        outputVariant.find((outputVariant) => outputVariant.id === id).type
     );
 }
+
+// function getCurrentArgs() {
+//   targetedSubject;
+// }
 
 function cleanFormsField() {
   taskForm.innerHTML = "";
 }
-function setAllQA(targetedSubject) {
+
+async function setAllQA(targetedSubject) {
+  const question = await getQuestions();
+  const args = await getArgs();
   cleanFormsField();
   cleanTrainerMessage();
+
+  const descriptionValues = await getDescription(targetedSubject);
+  const outputVariantValues = await getOutputVariantAsync(targetedSubject);
+
   const allAnswers = [
-    { type: "description", values: getDescription(targetedSubject) },
-    { type: "args", values: argsList },
-    { type: "chengeData", values: chengeData },
-    { type: "outputVariant", values: getOutputVariant(targetedSubject) },
+    { type: "description", values: descriptionValues },
+    { type: "args", values: args },
+    { type: "changeData", values: changeData },
+    { type: "outputVariant", values: outputVariantValues },
   ];
-  questionList.forEach((question, questionIndex) => {
+
+  question.forEach((question, questionIndex) => {
     taskForm.insertAdjacentHTML(
       "beforeend",
       exerciseContainer("EC" + questionIndex)

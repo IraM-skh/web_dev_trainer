@@ -3,6 +3,7 @@ const category = JSON.stringify([
     id: 1,
     categoryName: "Числа",
     outputIds: [1, 2, 3, 7, 8],
+    idArgs: [2, 13, 15, 18],
     subjectsName: [
       "Number()",
       "toFixed",
@@ -18,6 +19,7 @@ const category = JSON.stringify([
     id: 2,
     categoryName: "Массив",
     outputIds: [1, 2, 3, 7, 8, 11, 12, 13, 14, 15, 16],
+    idArgs: [2, 13, 15, 18],
     subjectsName: [
       "length(arr)",
       "push",
@@ -34,6 +36,7 @@ const category = JSON.stringify([
     id: 3,
     categoryName: "Объект",
     outputIds: [1, 2, 3, 4, 7, 8],
+    idArgs: [2, 13, 15, 18],
     subjectsName: ["assign", "keys", "values", "entries"],
   },
 
@@ -41,6 +44,7 @@ const category = JSON.stringify([
     id: 4,
     categoryName: "Cтрока",
     outputIds: [1, 2, 3, 7, 8, 14],
+    idArgs: [2, 13, 15, 18],
     subjectsName: [
       "length(str)",
       "concat",
@@ -62,6 +66,7 @@ const subject = JSON.stringify([
       "ложное описаниdsе 1",
       "ложное описание 2",
     ],
+    idArgs: [2],
   },
   {
     subjectName: "toFixed",
@@ -70,10 +75,12 @@ const subject = JSON.stringify([
       "ложное оdsписание 1",
       "ложное описание 2",
     ],
+    idArgs: [1, 2],
   },
   {
     subjectName: "Number.parseInt",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "Number.isNaN",
@@ -82,6 +89,7 @@ const subject = JSON.stringify([
       "лоdsaжное описание 1",
       "ложное описание 2",
     ],
+    idArgs: [1, 2],
   },
   {
     subjectName: "length(arr)",
@@ -90,6 +98,7 @@ const subject = JSON.stringify([
       "ложнaaaaaaое описание 1",
       "ложное описание 2",
     ],
+    idArgs: [1, 2],
   },
   {
     subjectName: "push",
@@ -98,46 +107,57 @@ const subject = JSON.stringify([
       "ложное описание 1",
       "ложное описание 2",
     ],
+    idArgs: [1, 2],
   },
   {
     subjectName: "unshift",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 3],
   },
   {
     subjectName: "pop",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "assign",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "keys",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "values",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "entries",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "length(str)",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "concat",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "toLowerCase",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
   {
     subjectName: "toUpperCase",
     description: ["Кол-во символов", "ложное описание 1", "ложное описание 2"],
+    idArgs: [1, 2],
   },
 ]);
 
@@ -155,7 +175,7 @@ const question = JSON.stringify([
   {
     question: "Меняются ли исходные данные?",
     ansversType: "radio",
-    questionName: "chengeData",
+    questionName: "changeData",
   },
   {
     question: "Что возвращается",
@@ -184,21 +204,31 @@ const outputVariant = JSON.stringify([
 ]);
 
 const args = JSON.stringify([
-  "num",
-  "str",
-  "arg for cb",
-  "cb",
-  "el",
-  "ind",
-  "arr",
-  "msec",
-  "no",
+  { id: 1, arg: "acc" },
+  { id: 2, arg: "any" },
+  { id: 3, arg: "arg for cb" },
+  { id: 4, arg: "arr" },
+  { id: 5, arg: "bool" },
+  { id: 6, arg: "cb" },
+  { id: 7, arg: "el" },
+  { id: 8, arg: "error" },
+  { id: 9, arg: "HTML el" },
+  { id: 10, arg: "ind" },
+  { id: 11, arg: "method" },
+  { id: 12, arg: "msec" },
+  { id: 13, arg: "no" },
+  { id: 14, arg: "null" },
+  { id: 15, arg: "num" },
+  { id: 16, arg: "obj" },
+  { id: 17, arg: "regExp" },
+  { id: 18, arg: "str" },
+  { id: 19, arg: "url" },
 ]);
 
 const correctAnsvers = {
   args: ["num", "no"],
   description: "Кол-во символов",
-  chengeData: "Нет",
+  changeData: "Нет",
   outputVariant: "Число",
 };
 

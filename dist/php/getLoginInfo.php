@@ -1,0 +1,35 @@
+<?php
+$mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+header("Content-Type: application/json; charset=UTF-8");
+$json = json_decode(file_get_contents("php://input"));
+$login = $json->login;
+$password = md5($json->password);
+$remember = $json->rememder;
+$userDB = $mysql->query("SELECT * FROM `users` WHERE `login`='$login' AND `password`='$password'");
+$row_cnt = mysqli_num_rows($userDB);
+$result = false;
+if ($row_cnt != 0){
+    $result = true;
+    $user;
+    $user_id;
+    $time = 3600*24*30;
+    while($row = mysqli_fetch_array($userDB)){
+        $user["name"] = $row["login"];
+        $user_id["id"]= $row["id_hash"];
+     };
+     if($remember){setcookie('user', $user['name'], time()+$time);
+        setcookie('user_id', $user_id["id"], time()+$time);
+    } else{
+        setcookie('user', $user['name']);
+        setcookie('user_id', $user_id["id"]);
+    }
+    
+    session_start();
+};
+$resultToJs = array();
+array_push($resultToJs, $result);
+//возвращает true/false правильно ли пользователь ввел данные. Если правильно, то логинит. 
+    echo json_encode($resultToJs, JSON_UNESCAPED_UNICODE);
+
+  $mysql->close();
+ ?>

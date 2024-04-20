@@ -5,33 +5,40 @@ import {
   statisticCategoryList,
 } from "./ProfileHTMLEl";
 
-import { userResults } from "../testData/categoryData";
-import { categoryList } from "../ajax/parseFromJOSN";
-function countProfileResults() {
+// import { userResults } from "../testData/categoryData";
+// import { categoryList } from "../ajax/parseFromJOSN";
+
+import getUserResultQuery from "../ajax/getUserResultQuery";
+import getCategorys from "../dataFromAjaxStatic/getCategorys";
+
+async function countProfileResults() {
+  const response = await getUserResultQuery();
+  const userResult = await response.json();
+  const categorys = await getCategorys();
   let countedUserSolved = 0;
   let countedUserFailed = 0;
   let countedUserUnstarted = 0;
   if (statisticCategoryList.value === "Все") {
-    countedUserSolved = userResults.solved.length;
-    countedUserFailed = userResults.failed.length;
+    countedUserSolved = userResult.solved.length;
+    countedUserFailed = userResult.failed.length;
     countedUserUnstarted =
-      categoryList.reduce(
+      categorys.reduce(
         (acc, category) => acc + category.subjectsName.length,
         0
       ) -
       countedUserSolved -
       countedUserFailed;
   } else {
-    const subjects = categoryList.find((category) =>
+    const subjects = categorys.find((category) =>
       category.categoryName.includes(statisticCategoryList.value)
     ).subjectsName;
 
-    userResults.solved.forEach((subjectSolved) => {
+    userResult.solved.forEach((subjectSolved) => {
       if (subjects.includes(subjectSolved)) {
         countedUserSolved += 1;
       }
     });
-    userResults.failed.forEach((subjectFailed) => {
+    userResult.failed.forEach((subjectFailed) => {
       if (subjects.includes(subjectFailed)) {
         countedUserFailed += 1;
       }

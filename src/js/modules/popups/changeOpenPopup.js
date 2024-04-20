@@ -1,7 +1,7 @@
 import { loginModalWindow } from "../login/loginHtmlEl";
-import { profileModalWindow } from "../profile.js/ProfileHTMLEl";
-import setCategoryInProfile from "../profile.js/setCategoryInProfile.js";
-import countProfileResults from "../profile.js/countProfileResults.js";
+import { profileModalWindow } from "../profile/ProfileHTMLEl";
+import setCategoryInProfile from "../profile/setCategoryInProfile";
+import countProfileResults from "../profile/countProfileResults";
 
 let openPopup = null;
 

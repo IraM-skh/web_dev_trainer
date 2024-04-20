@@ -1,5 +1,6 @@
-import { categoryList } from "../ajax/parseFromJOSN";
-import { userResults } from "../testData/categoryData";
+import getCategorys from "../dataFromAjaxStatic/getCategorys";
+import getUserResultQuery from "../ajax/getUserResultQuery";
+
 import { filters, sortedBy } from "../filter/filterApplying";
 import { subjectUl } from "./subjectHtmlEl";
 
@@ -7,9 +8,12 @@ function generateSubject(subjectName, result) {
   return `<li class="subject ${result}">${subjectName}</li>`;
 }
 
-function setAllSubject() {
+async function setAllSubject() {
   clearSubjectList();
-  categoryList.forEach((category) => {
+
+  const categorys = await getCategorys();
+
+  categorys.forEach((category) => {
     category.subjectsName.forEach((subject) => {
       subjectUl.insertAdjacentHTML(
         "beforeend",
@@ -20,9 +24,11 @@ function setAllSubject() {
   setSubjectOnFilter();
 }
 
-function setSbjectOnCategory(categoryName) {
+async function setSbjectOnCategory(categoryName) {
   clearSubjectList();
-  categoryList
+  const categorys = await getCategorys();
+
+  categorys
     .find((category) => category.categoryName === categoryName)
     .subjectsName.forEach((subject) => {
       subjectUl.insertAdjacentHTML(
@@ -39,13 +45,17 @@ function clearSubjectList() {
   });
 }
 
-function subjectResult(subjectName) {
-  if (userResults.solved.includes(subjectName)) {
+async function subjectResult(subjectName) {
+  const response = await getUserResultQuery();
+  const userResult = await response.json();
+
+  if (userResult.solved.includes(subjectName)) {
     return "solved";
   }
-  if (userResults.failed.includes(subjectName)) {
+  if (userResult.failed.includes(subjectName)) {
     return "failed";
   }
+
   return "unstarted";
 }
 

@@ -1,6 +1,5 @@
-import setCategory from "./modules/categoryList/setCategory.js";
+import setCategory from "./modules/categoryList/setCategorys.js";
 import { setAllSubject } from "./modules/subjectsList/subject.js";
-import { addEventListenerOnTrainerList } from "./modules/subjectsList/toggleChosenVariantStyle.js";
 import "../scss/main.scss";
 import changeNavBtnStyle from "./modules/nav/changeNavBtnStyle";
 import "../js/modules/filter/toggleFilter.js";
@@ -19,15 +18,15 @@ import { changeOpenPopup } from "./modules/popups/changeOpenPopup.js";
 import {
   statisticCategoryList,
   profileModalWindow,
-} from "./modules/profile.js/ProfileHTMLEl.js";
-import countProfileResults from "./modules/profile.js/countProfileResults.js";
-import exitProfile from "./modules/profile.js/exitProfile.js";
-import setLoginAtLocalStorage from "./modules/profile.js/setLoginAtLocalStorage.js";
+} from "./modules/profile/ProfileHTMLEl.js";
+import countProfileResults from "./modules/profile/countProfileResults.js";
+import exitProfile from "./modules/profile/exitProfile.js";
+import setLoginAtLocalStorage from "./modules/profile/setLoginAtLocalStorage.js";
 
 setCategory();
 setAllSubject();
 changeNavBtnStyle();
-addEventListenerOnTrainerList();
+
 setLoginAtLocalStorage();
 
 document.addEventListener("submit", (event) => {

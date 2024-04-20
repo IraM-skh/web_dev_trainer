@@ -6,7 +6,7 @@ function setLoginAtLocalStorage() {
     toggleLoginBtnDisplay();
     userLogin.textContent = localStorage.getItem("login");
   } else {
-    console.log("нет");
+    console.log("нет  src/js/modules/profile/setLoginAtLocalStorage.js");
   }
 }
 

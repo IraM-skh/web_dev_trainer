@@ -1,4 +1,4 @@
-import { userLogin } from "../profile.js/ProfileHTMLEl";
+import { userLogin } from "../profile/ProfileHTMLEl";
 function login(login) {
   userLogin.textContent = login;
 }

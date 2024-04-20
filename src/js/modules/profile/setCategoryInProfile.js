@@ -1,12 +1,14 @@
 import { statisticCategoryList } from "./ProfileHTMLEl";
-import { categoryList } from "../ajax/parseFromJOSN";
+// import { categoryList } from "../ajax/parseFromJOSN";
+import getCategorys from "../dataFromAjaxStatic/getCategorys";
 
-function setCategoryInProfile() {
+async function setCategoryInProfile() {
+  const categorys = await getCategorys();
   statisticCategoryList.insertAdjacentHTML(
     "beforeend",
     addOptionToStatisticCategorys("Все")
   );
-  categoryList.forEach((category) => {
+  categorys.forEach((category) => {
     statisticCategoryList.insertAdjacentHTML(
       "beforeend",
       addOptionToStatisticCategorys(category.categoryName)
