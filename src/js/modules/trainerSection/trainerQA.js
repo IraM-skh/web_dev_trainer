@@ -15,6 +15,9 @@ import getOutputVariants from "../dataFromAjaxStatic/getOutputVariants";
 import getQuestions from "../dataFromAjaxStatic/getQuestions";
 import getSubjects from "../dataFromAjaxStatic/getSubjects";
 import getArgs from "../dataFromAjaxStatic/getArgs";
+import toggleWarningLoginMessage from "./toggleWarningLoginMessage";
+import toggleStyleForTrainerContainerWithForm from "./toggleStyleForTrainerContainerWithForm";
+import randomShuffleDescriptionValues from "./randomShuffleDescriptionVariants";
 
 const changeData = ["Да", "Нет"];
 
@@ -42,36 +45,50 @@ async function getDescription(targetedSubject) {
   }).description;
 }
 
-async function getOutputVariantAsync(targetedSubject) {
-  const outputVariant = await getOutputVariants();
+async function getOutputVariantOrArgs(
+  targetedSubject,
+  asyncGetterFunction,
+  categorysIdNameStr,
+  needTypeOrArgStr
+) {
+  const searchValuesArray = await asyncGetterFunction();
   const categorys = await getCategorys();
   return categorys
     .find((category) => {
       return category.subjectsName.includes(targetedSubject.textContent);
     })
-    .outputIds.map(
-      (id) =>
-        outputVariant.find((outputVariant) => outputVariant.id === id).type
-    );
+    [categorysIdNameStr].map((id) => {
+      return searchValuesArray.find((searchValue) => searchValue.id === id)[
+        needTypeOrArgStr
+      ];
+    });
 }
-
-// function getCurrentArgs() {
-//   targetedSubject;
-// }
 
 function cleanFormsField() {
   taskForm.innerHTML = "";
 }
 
 async function setAllQA(targetedSubject) {
-  const question = await getQuestions();
-  const args = await getArgs();
   cleanFormsField();
   cleanTrainerMessage();
+  toggleWarningLoginMessage();
+  toggleStyleForTrainerContainerWithForm();
+  const question = await getQuestions();
 
   const descriptionValues = await getDescription(targetedSubject);
-  const outputVariantValues = await getOutputVariantAsync(targetedSubject);
-
+  const outputVariantValues = await getOutputVariantOrArgs(
+    targetedSubject,
+    getOutputVariants,
+    "outputIds",
+    "type"
+  );
+  const args = await getOutputVariantOrArgs(
+    targetedSubject,
+    getArgs,
+    "idArgs",
+    "arg"
+  );
+  randomShuffleDescriptionValues(descriptionValues);
   const allAnswers = [
     { type: "description", values: descriptionValues },
     { type: "args", values: args },
@@ -89,6 +106,7 @@ async function setAllQA(targetedSubject) {
       "beforeend",
       setQestion(question.question)
     );
+
     allAnswers
       .find((answer) => answer.type === question.questionName)
       .values.forEach((value, answerIndex) => {

@@ -1,11 +1,11 @@
+import showGlobalErrorPopup from "../popups/showGlobalErrorPopup";
 function getArgsQuery() {
-  let urlGetArgs = "./php/getArgs.php";
-  return fetch(urlGetArgs);
-  // .then((response) => response.json())
-  // .then((commits) => {
-  //   console.log(commits);
-  //   return commits;
-  // });
+  try {
+    let urlGetArgs = "./php/getArgs.php";
+    return fetch(urlGetArgs);
+  } catch (error) {
+    showGlobalErrorPopup();
+  }
 }
 
 export default getArgsQuery;

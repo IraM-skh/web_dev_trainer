@@ -2,9 +2,12 @@ import setTrainerMessage from "./setTrainerMessage";
 import cleanTrainerMessage from "./cleanTrainerMessage";
 import sendForm from "./sendForm";
 import { trainerContainer } from "./trainerSectionHTML";
-
+import toggleWarningLoginMessage from "./toggleWarningLoginMessage";
+import toggleStyleForTrainerContainerWithForm from "./toggleStyleForTrainerContainerWithForm";
 function formValidator(form) {
   cleanTrainerMessage();
+  toggleWarningLoginMessage();
+  toggleStyleForTrainerContainerWithForm();
   const inputs = [...form.querySelectorAll("input")];
   const category = new Set(inputs.map((input) => input.name));
   const checkedInputs = inputs.filter((input) => input.checked);

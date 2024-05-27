@@ -4,7 +4,8 @@ const trainerListContainer = document.querySelector(".trainer_list_container");
 import { setAllSubject, setSbjectOnCategory } from "./subject";
 import { getActiveSubject } from "./rewriteSubjectResult";
 import setSelectsdSubjectOnChangeCategory from "./setSelectsdSubjectOnChangeCategory";
-
+import toggleCategoryToSubject from "./toggleCategoryToSubject";
+import { toggleCategorysToSubjectsBtn } from "./subjectHtmlEl";
 function addEventListenerOnTrainerList() {
   const category = [...document.querySelectorAll(".category")];
 
@@ -15,6 +16,7 @@ function addEventListenerOnTrainerList() {
         ? setAllSubject()
         : setSbjectOnCategory(event.target.textContent);
       setSelectsdSubjectOnChangeCategory();
+      toggleCategoryToSubject(toggleCategorysToSubjectsBtn);
       return;
     }
 
@@ -25,6 +27,10 @@ function addEventListenerOnTrainerList() {
       showTasks();
       setAllQA(event.target);
       return;
+    }
+
+    if (event.target.classList.contains("toggle_trainer_list_btn")) {
+      toggleCategoryToSubject(event.target);
     }
   });
 }

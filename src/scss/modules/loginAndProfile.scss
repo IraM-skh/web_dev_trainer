@@ -61,7 +61,8 @@
   .need_to_registration_btn {
     transition: all 0.5s;
   }
-  .need_to_registration_btn:hover {
+  .need_to_registration_btn:hover,
+  .need_to_registration_btn:target {
     text-shadow: 0 0 10px rgb(54, 194, 189);
   }
 }

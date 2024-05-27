@@ -3,17 +3,29 @@ import {
   passwordInput,
   repeatPassword,
   loginErrorMessage,
+  rememberLogin,
+  messageAnyUnidentifiedErr,
 } from "./loginHtmlEl";
-import login from "./login";
+import setLoginInProfile from "./setLoginInProfile";
 import resetErrorStylesLogin from "./resetErrorStylesLogin";
 import saveLoginInStorage from "./saveLoginInStorage";
 import toggleLoginBtnDisplay from "./toggleLoginBtnDisplay";
 import togglePopupDisplay from "../popups/togglePopupDisplay";
 import { changeOpenPopup } from "../popups/changeOpenPopup";
+import login from "./login";
+import registration from "./registration";
+import getLoginInfoQuery from "../ajax/getLoginInfoQuery";
 
-function loginFormValidate(targetBtnClass) {
+import setRegistration from "../ajax/setRegistration";
+import setCategory from "../categoryList/setCategorys";
+import { setAllSubject } from "../subjectsList/subject";
+import { categoryAll } from "../categoryList/categoryHtmlEl";
+import toggleWarningLoginMessage from "../trainerSection/toggleWarningLoginMessage";
+import toggleStyleForTrainerContainerWithForm from "../trainerSection/toggleStyleForTrainerContainerWithForm";
+async function loginFormValidate(targetBtnClass) {
   let loginValidateResult = true;
   resetErrorStylesLogin();
+
   if (
     !loginInput.value.trim() ||
     !passwordInput.value.trim() ||
@@ -58,15 +70,52 @@ function loginFormValidate(targetBtnClass) {
     }
   }
   if (loginValidateResult) {
-    //отправка данных на php. Проверка логина и пароля. Если логина нет при выходе- ошибка такого логина не зарегестрированно. Если лоигн есть, но не совпадает пароль - неправильный пароль. Если при регистрации такой логин уже есть- ошибка "такой логин уже зарегистрирован, придумайте другой"
-    console.log("данные приняты");
+    if (targetBtnClass === "registration_btn") {
+      try {
+        await setRegistration(
+          loginInput.value.trim(),
+          passwordInput.value.trim(),
+          rememberLogin.checked
+        );
+      } catch (error) {
+        error === "Такой пользователь уже есть. Укажите другой логин."
+          ? (loginErrorMessage.textContent += ` ${error}`)
+          : (loginErrorMessage.textContent += ` ${messageAnyUnidentifiedErr}`);
+        loginInput.classList.add("failed_validate");
+        return;
+      }
+    } else {
+      try {
+        await getLoginInfoQuery(
+          loginInput.value.trim(),
+          passwordInput.value.trim(),
+          rememberLogin.checked
+        );
+      } catch (error) {
+        error === "Неверные логин или пароль."
+          ? (loginErrorMessage.textContent += ` ${error}`)
+          : (loginErrorMessage.textContent += ` ${messageAnyUnidentifiedErr}`);
+        loginInput.classList.add("failed_validate");
+        passwordInput.classList.add("failed_validate");
+        return;
+      }
+    }
+
     loginErrorMessage.classList.add("hidden");
-    login(loginInput.value.trim());
-    saveLoginInStorage(loginInput.value.trim());
+    setCategotyOnAll();
+    setAllSubject();
+    setLoginInProfile(loginInput.value.trim());
     toggleLoginBtnDisplay();
     togglePopupDisplay();
+    clearFormFields([loginInput, passwordInput, repeatPassword]);
     changeOpenPopup(null);
+    toggleWarningLoginMessage();
+    toggleStyleForTrainerContainerWithForm();
   }
+}
+
+function clearFormFields(inputsArray) {
+  inputsArray.forEach((input) => (input.value = ""));
 }
 
 function checkSymbolLimit(minInclusive, maxInclusive, string) {
@@ -90,4 +139,11 @@ function checkPasswordEquival(pass1, pass2) {
   return false;
 }
 
+function setCategotyOnAll() {
+  const categoryElements = document.querySelectorAll(".category");
+  categoryElements.forEach((el) => {
+    el.classList.remove("category_selected");
+  });
+  categoryAll.classList.add("category_selected");
+}
 export default loginFormValidate;

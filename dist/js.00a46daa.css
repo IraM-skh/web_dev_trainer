@@ -149,6 +149,7 @@ header {
   display: flex;
   font-size: 1.5rem;
   justify-content: space-between;
+  align-items: center;
 }
 header h1 {
   margin: 0 0.5rem;
@@ -214,19 +215,20 @@ main {
 }
 
 .trainer_container {
-  position: relative;
   width: 66%;
   box-sizing: border-box;
   padding: 0 0.7rem;
   background: url(/background63.8223dde7.png);
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.choose_trainer_message {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
+.trainer_container_with_form {
+  justify-content: flex-start;
 }
 
 .submit_btn,
@@ -394,6 +396,10 @@ input[type=radio]:checked + label:after {
   color: rgb(255, 0, 106);
 }
 
+.trainer_list_container ul {
+  width: 100%;
+}
+
 .trainer_list_container {
   position: absolute;
   width: 100%;
@@ -405,19 +411,52 @@ input[type=radio]:checked + label:after {
   justify-content: space-between;
 }
 
+.toggle_trainer_list_btn {
+  writing-mode: tb-rl;
+  transform: rotate(180deg);
+  font-size: 1rem;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  transition: all 0.5s, background-color 0.3s;
+}
+
+.toggle_subjects_to_categorys_btn {
+  margin-right: 0.3rem;
+}
+
+.toggle_categorys_to_subjects_btn {
+  margin-left: 0.3rem;
+}
+
 .category_container {
   overflow: auto;
-  box-sizing: border-box;
-  width: 50%;
   padding-right: 0.3rem;
   border-right: 6px double rgba(200, 200, 200, 0.5568627451);
+  transition: width 0.5s;
 }
 
 .subject_container {
   overflow: auto;
+  padding-left: 0.3rem;
+  border-left: 6px double rgba(200, 200, 200, 0.5568627451);
+  transition: width 0.8s;
+}
+
+.width0 {
   box-sizing: border-box;
-  width: 50%;
-  padding: 0 0.3rem;
+  width: 0%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: width 0s;
+}
+
+.width100 {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 li {
@@ -443,7 +482,8 @@ li {
   box-shadow: 0 0 3px rgba(74, 255, 58, 0.3137254902);
 }
 
-li:hover {
+li:hover,
+.toggle_trainer_list_btn:hover {
   background-color: rgba(54, 194, 189, 0.356);
 }
 .filter_icon_container {
@@ -554,7 +594,8 @@ li:hover {
 .login_form_container .need_to_registration_btn {
   transition: all 0.5s;
 }
-.login_form_container .need_to_registration_btn:hover {
+.login_form_container .need_to_registration_btn:hover,
+.login_form_container .need_to_registration_btn:target {
   text-shadow: 0 0 10px rgb(54, 194, 189);
 }
 
@@ -618,7 +659,7 @@ button {
 }
 
 .popup_window {
-  width: fit-content;
+  width: max-content;
   position: fixed;
   padding: 40px 50px;
   border-radius: 30px;

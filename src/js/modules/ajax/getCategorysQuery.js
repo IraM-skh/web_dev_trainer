@@ -1,11 +1,12 @@
-function getCategorysQuery() {
-  let urlGetCategorys = "./php/getCategorys.php";
-  return fetch(urlGetCategorys);
-  //.then((response) => response.json());
-  // .then((commits) => {
-  //   console.log(commits);
-  //   return commits;
-  // });
+import showGlobalErrorPopup from "../popups/showGlobalErrorPopup";
+
+async function getCategorysQuery() {
+  try {
+    let urlGetCategorys = "./php/getCategorys.php";
+    return fetch(urlGetCategorys);
+  } catch (error) {
+    showGlobalErrorPopup();
+  }
 }
 
 export default getCategorysQuery;

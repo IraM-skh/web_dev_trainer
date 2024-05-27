@@ -34,20 +34,24 @@ main {
   margin-top: 0.4rem;
 }
 .trainer_container {
-  position: relative;
   width: 66%;
   box-sizing: border-box;
   padding: 0 0.7rem;
   background: url(../../assets/bg/background63.png);
 
   overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
-.choose_trainer_message {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
+
+.trainer_container_with_form {
+  justify-content: flex-start;
 }
+
 .submit_btn,
 .next_btn,
 .login_btn,

@@ -10,14 +10,14 @@ function generateSubject(subjectName, result) {
 
 async function setAllSubject() {
   clearSubjectList();
-
   const categorys = await getCategorys();
-
+  const responseUserResult = await getUserResultQuery();
+  const userResult = await responseUserResult.json();
   categorys.forEach((category) => {
     category.subjectsName.forEach((subject) => {
       subjectUl.insertAdjacentHTML(
         "beforeend",
-        generateSubject(subject, subjectResult(subject))
+        generateSubject(subject, subjectResult(subject, userResult))
       );
     });
   });
@@ -27,13 +27,14 @@ async function setAllSubject() {
 async function setSbjectOnCategory(categoryName) {
   clearSubjectList();
   const categorys = await getCategorys();
-
+  const responseUserResult = await getUserResultQuery();
+  const userResult = await responseUserResult.json();
   categorys
     .find((category) => category.categoryName === categoryName)
     .subjectsName.forEach((subject) => {
       subjectUl.insertAdjacentHTML(
         "beforeend",
-        generateSubject(subject, subjectResult(subject))
+        generateSubject(subject, subjectResult(subject, userResult))
       );
     });
   setSubjectOnFilter();
@@ -45,20 +46,16 @@ function clearSubjectList() {
   });
 }
 
-async function subjectResult(subjectName) {
-  const response = await getUserResultQuery();
-  const userResult = await response.json();
-
+//
+function subjectResult(subjectName, userResult) {
   if (userResult.solved.includes(subjectName)) {
     return "solved";
   }
   if (userResult.failed.includes(subjectName)) {
     return "failed";
   }
-
   return "unstarted";
 }
-
 function setSubjectOnFilter() {
   const subjects = [...document.querySelectorAll(".subject")];
   const starterFilters = ["solved", "failed", "unstarted"];

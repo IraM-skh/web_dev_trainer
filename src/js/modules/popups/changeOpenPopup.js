@@ -17,6 +17,9 @@ function changeOpenPopup(popupClassOrNull) {
     setCategoryInProfile();
     countProfileResults();
   }
+  if (popupClassOrNull === "error_message_modal_window") {
+    openPopup = document.querySelector(".error_message_modal_window");
+  }
 }
 
 export { openPopup, changeOpenPopup };

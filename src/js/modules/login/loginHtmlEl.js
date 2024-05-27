@@ -14,6 +14,9 @@ const loginInput = document.querySelector(".login_input");
 const passwordInput = document.querySelector(".password_input");
 const rememberLogin = document.querySelector("#remember_login");
 
+const messageAnyUnidentifiedErr =
+  "Что-то пошло не так, попробуйте перезагрузить страницу.";
+
 function toggleDispay(element) {
   element.classList.toggle("hidden");
 }
@@ -30,4 +33,5 @@ export {
   loginErrorMessage,
   rememberLogin,
   showPopupLoginBtn,
+  messageAnyUnidentifiedErr,
 };

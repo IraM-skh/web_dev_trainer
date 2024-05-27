@@ -1,5 +1,7 @@
 import togglePopupDisplay from "../popups/togglePopupDisplay";
 import { changeOpenPopup } from "../popups/changeOpenPopup";
+import getLoginFromCookie from "../login/getLoginFromCookie";
+import toggleLoginBtnDisplay from "../login/toggleLoginBtnDisplay";
 function changeNavBtnStyle() {
   const navBtns = [...document.querySelectorAll(".nav_btn")];
   const nav = document.querySelector("nav");
@@ -17,6 +19,12 @@ function changeNavBtnStyle() {
       event.target.classList.contains("show_popup_profile_btn") ||
       event.target.classList.contains("profile_icon_logined")
     ) {
+      if (!getLoginFromCookie()) {
+        toggleLoginBtnDisplay();
+        changeOpenPopup("login_modal_window");
+        togglePopupDisplay();
+        return;
+      }
       changeOpenPopup("profile_modal_window");
       togglePopupDisplay();
       return;

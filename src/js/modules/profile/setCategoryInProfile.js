@@ -1,5 +1,4 @@
 import { statisticCategoryList } from "./ProfileHTMLEl";
-// import { categoryList } from "../ajax/parseFromJOSN";
 import getCategorys from "../dataFromAjaxStatic/getCategorys";
 
 async function setCategoryInProfile() {

@@ -6,18 +6,34 @@ import {
 
 import addNextBtn from "./addNextBtn";
 import { taskForm } from "./trainerSectionHTML";
+import setResult from "../ajax/setResult";
+import { trainerContainer } from "./trainerSectionHTML";
 
-function sendForm(inputsForEstimation, showMessage) {
-  if (formEstimation(inputsForEstimation)) {
+async function sendForm(inputsForEstimation, showMessage) {
+  const formEstimationBool = await formEstimation(inputsForEstimation);
+  let result = null;
+  if (formEstimationBool) {
+    result = "solved";
     showMessage("Все правильно, молодец!");
-    rewriteSubjectResult("solved");
+    rewriteSubjectResult(result);
     if (activeSubject.nextElementSibling) {
       addNextBtn(taskForm);
     }
-    return;
+  } else {
+    result = "failed";
+    showMessage("Неправильно! Можете попробовать снова.", true);
+    rewriteSubjectResult(result);
   }
-  showMessage("Неправильно! Можете попробовать снова.", true);
-  rewriteSubjectResult("failed");
+
+  const sendFormResponse = await setResult(activeSubject.textContent, result);
+  if (!sendFormResponse?.result && sendFormResponse?.message != "no_user") {
+    showMessage(sendFormResponse.message, true);
+  }
+  trainerContainer.scrollBy({
+    left: 0,
+    top: trainerContainer.offsetHeight,
+    behavior: "smooth",
+  });
 }
 
 export default sendForm;

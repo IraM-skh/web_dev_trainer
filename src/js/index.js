@@ -21,19 +21,28 @@ import {
 } from "./modules/profile/ProfileHTMLEl.js";
 import countProfileResults from "./modules/profile/countProfileResults.js";
 import exitProfile from "./modules/profile/exitProfile.js";
-import setLoginAtLocalStorage from "./modules/profile/setLoginAtLocalStorage.js";
+import setLoginAtCookie from "./modules/profile/setLoginAtCookie.js";
+import sessionCheck from "./modules/ajax/sessionСheck.js";
+import getLoginFromCookie from "./modules/login/getLoginFromCookie.js";
+import toggleWarningLoginMessage from "./modules/trainerSection/toggleWarningLoginMessage.js";
+import ELForPopups from "./modules/popups/ELForPopups.js";
+//тесты
 
+sessionCheck();
 setCategory();
 setAllSubject();
 changeNavBtnStyle();
-
-setLoginAtLocalStorage();
+setLoginAtCookie();
+toggleWarningLoginMessage();
+ELForPopups();
+// setLoginAtLocalStorage();
 
 document.addEventListener("submit", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("filter_container")) {
     filterApplying(event.target);
     toggleFilter();
+    return;
   }
   if (event.target.classList.contains("task_form")) {
     formValidator(event.target);

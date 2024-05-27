@@ -1,9 +1,9 @@
-// import { correctAnsvers } from "../testData/categoryData";
 import getCorrectAnsversQuery from "../ajax/getCorrectAnsversQuery";
-
+import { activeSubject } from "../subjectsList/rewriteSubjectResult";
 async function formEstimation(checkedInputsArray) {
-  const response = await getCorrectAnsversQuery();
+  const response = await getCorrectAnsversQuery(activeSubject.textContent);
   const correctAnsvers = await response.json();
+
   const inputCheckboxes = checkedInputsArray.filter(
     (input) => input.type === "checkbox"
   );
@@ -15,7 +15,6 @@ async function formEstimation(checkedInputsArray) {
     }
     return correctAnsvers[input.name] === input.value;
   });
-  console.log(resultingArray.every((value) => value));
   return resultingArray.every((value) => value);
 }
 

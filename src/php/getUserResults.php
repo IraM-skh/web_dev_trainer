@@ -1,15 +1,15 @@
 <?php
 
 $mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
-
+$cookLogin = $_COOKIE['user'];
+$cookIdHash = $_COOKIE['user_id'];
 $userResults = array();
 $userResults["solved"] = array();
 $userResults["failed"] = array();
 $idSolved = array();
 $idFailed = array();
 
-$cookLogin = $_COOKIE['user'];
-$cookIdHash = $_COOKIE['user_id'];
+
 $usersDB = $mysql->query("SELECT `id`, `id_hash` FROM `users` WHERE `login` = '$cookLogin'");
 $row_cnt = mysqli_num_rows($usersDB);
 
@@ -20,7 +20,6 @@ if($row_cnt != 0){
         $userId = $row["id"];
         $userIdHash = $row["id_hash"];
      };
-  
     if(md5($userId) == $cookIdHash){
 
         $userSolvedDB = $mysql->query("SELECT `id_subject` FROM `user_progress` WHERE `progress_now` = 'solved' AND `login` = '$cookLogin'");

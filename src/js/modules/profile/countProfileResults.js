@@ -5,9 +5,6 @@ import {
   statisticCategoryList,
 } from "./ProfileHTMLEl";
 
-// import { userResults } from "../testData/categoryData";
-// import { categoryList } from "../ajax/parseFromJOSN";
-
 import getUserResultQuery from "../ajax/getUserResultQuery";
 import getCategorys from "../dataFromAjaxStatic/getCategorys";
 

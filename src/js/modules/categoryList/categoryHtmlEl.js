@@ -1,3 +1,3 @@
 const categoryAll = document.querySelector(".category_all");
-
-export { categoryAll };
+const categoryContainer = document.querySelector(".category_container");
+export { categoryAll, categoryContainer };

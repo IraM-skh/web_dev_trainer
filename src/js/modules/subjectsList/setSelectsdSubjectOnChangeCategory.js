@@ -4,6 +4,8 @@ import {
   chooseTrainerMessage,
 } from "../trainerSection/trainerSectionHTML";
 import cleanTrainerMessage from "../trainerSection/cleanTrainerMessage";
+import toggleWarningLoginMessage from "../trainerSection/toggleWarningLoginMessage";
+import toggleStyleForTrainerContainerWithForm from "../trainerSection/toggleStyleForTrainerContainerWithForm";
 
 function setSelectsdSubjectOnChangeCategory() {
   const subjects = [...document.querySelectorAll(".subject")];
@@ -24,6 +26,8 @@ function setSelectsdSubjectOnChangeCategory() {
     cleanTrainerMessage();
     chooseTrainerMessage.classList.remove("hidden");
     taskForm.classList.add("hidden");
+    toggleWarningLoginMessage();
+    toggleStyleForTrainerContainerWithForm();
   }
 }
 

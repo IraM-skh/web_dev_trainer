@@ -145,18 +145,32 @@
         </form>
 
         <div class="trainer_list_container">
-          <div class="category_container">
+          <button
+            class="toggle_subjects_to_categorys_btn toggle_trainer_list_btn"
+          >
+            Категории
+          </button>
+          <div class="category_container width0">
             <ul>
               <li class="category category_selected category_all">Все</li>
             </ul>
           </div>
-          <div class="subject_container">
+          <div class="subject_container width100">
             <ul></ul>
           </div>
+          <button
+            class="toggle_categorys_to_subjects_btn width0 toggle_trainer_list_btn"
+          >
+            Тренажер
+          </button>
         </div>
       </div>
       <div class="trainer_container">
         <p class="choose_trainer_message">Выберите тренажер из списка</p>
+        <p class="warning_trainer_message error_message hidden">
+          Ваши результаты не сохраняются. Если Вы хотите их сохранить, войдите в
+          аккаунт или зарегестрируйтесь.
+        </p>
         <form class="task_form hidden"></form>
         <p class="trainer_message hidden"></p>
       </div>
@@ -166,8 +180,8 @@
         <form class="login_form_container">
           <input class="login_input" placeholder="Введите логин" type="text" />
           <p class="explanatory_message">
-            Логин может сотояь из букв и цифр. <br />Длина логина от 4 до 15
-            символов.
+            Логин должен состять только из букв и/или цифр <br />Длина логина от
+            4 до 15 символов.
           </p>
           <input
             class="password_input"
@@ -207,6 +221,11 @@
         <p><span>Проваленные: </span><span class="user_failed"></span></p>
         <p><span>Неначатые: </span><span class="user_unstarted"></span></p>
         <button class="exit_profile_btn">Выйти из профиля</button>
+      </div>
+      <div class="error_message_modal_window hidden popup_window">
+        <p class="server_error_message">
+          Что-то пошло не так. Попробуйте еще раз либо перезагрузите страницу.
+        </p>
       </div>
     </div>
     <footer></footer>
