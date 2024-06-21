@@ -1,6 +1,7 @@
 
 <?php
- $mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+require './dbData.php';
+$mysql = new mysqli($dbDataHost, $dbDataUser, $dbDataPassword, $dbDataName);
  $subjectsDB = $mysql->query("SELECT `name`, `id_args`, `true_description`, `false_description_1`, `false_description_2` FROM `subject`");
  $subjectsArrForObj =[];
  

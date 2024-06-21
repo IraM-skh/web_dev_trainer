@@ -1,5 +1,6 @@
 <?php
-$mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+require './dbData.php';
+$mysql = new mysqli($dbDataHost, $dbDataUser, $dbDataPassword, $dbDataName);
 header("Content-Type: application/json; charset=UTF-8");
 $json = json_decode(file_get_contents("php://input"));
 

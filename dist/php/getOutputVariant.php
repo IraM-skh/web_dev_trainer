@@ -1,6 +1,6 @@
 <?php
-
-$mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+require './dbData.php';
+$mysql = new mysqli($dbDataHost, $dbDataUser, $dbDataPassword, $dbDataName);
 $outputVariantDB = $mysql->query("SELECT * FROM `outputvariant` WHERE 1");
 $outputVariantArrForObj =[];
 $outputVariants =[];

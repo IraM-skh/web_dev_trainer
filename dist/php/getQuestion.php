@@ -1,6 +1,6 @@
 <?php
-
-$mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+require './dbData.php';
+$mysql = new mysqli($dbDataHost, $dbDataUser, $dbDataPassword, $dbDataName);
 $questionsDB = $mysql->query("SELECT `question`, `ansvers_type`, `questionName` FROM `questions` WHERE `id_section` = 1");
 $questionsArrForObj =[];
 $questions =[];

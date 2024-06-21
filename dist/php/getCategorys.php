@@ -1,5 +1,6 @@
 <?php 
-        $mysql = new mysqli('localhost', 'narkolog35', 'F@zVVN7ZEGQ43ZYP', 'narkolog35');
+        require './dbData.php';
+        $mysql = new mysqli($dbDataHost, $dbDataUser, $dbDataPassword, $dbDataName);
        
         $categorys = $mysql->query("SELECT `id`, `name`, `output_ids`, `id_args` FROM `category` WHERE `id_section` = 1"); 
         $categorysAll = [];

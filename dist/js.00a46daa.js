@@ -833,7 +833,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _showGlobalErrorPopup = _interopRequireDefault(require("../popups/showGlobalErrorPopup"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// import fetchQuery from "./fetchQuery";
+
 function getArgsQuery() {
+  // return fetchQuery("./php/getArgs.php", showGlobalErrorPopup);
   try {
     var urlGetArgs = "./php/getArgs.php";
     return fetch(urlGetArgs);
@@ -2841,7 +2844,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56755" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -2986,4 +2989,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
-//# sourceMappingURL=/js.00a46daa.js.map
+//# sourceMappingURL=js.00a46daa.js.map
